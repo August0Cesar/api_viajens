@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<sql title="" gridSize="10,10" fk_template="%f" cascadeDeleteFk="true" openEditWindowAfterAddTable="false" displayFieldType="false" defaultTableColor="#FFFFFF" defaultRelationColor="#000000" databaseType="postgresql" dataTypes="[object Object]" defaultType="VARCHAR" showGrid="false" alignToGrid="false" svgNS="http://www.w3.org/2000/svg" drawLinesOnDrag="false" defaultFkUpdate="CASCADE" defaultFkDelete="CASCADE" fkActions="CASCADE,RESTRICT,NO ACTION" autoAlignGap="10" highlightTime="500" displayFkLines="true">
+  <table x="207" y="31" name="viajens" color="#FFFFFF" relation-color="#000000">
+    <comment>tabela de viajens</comment>
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="nome_viajem">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="valor_viajem">
+      <datatype>DECIMAL(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="data_inicio">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="data_final">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="data_cadastro">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="qtd_passageiros">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_tipo_viajem">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="tipo_viajem" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="id_empresa">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="empresa" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="status">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="status" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="830" y="174" name="passageiros" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="nome_passageiro">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="email">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="telefone">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_empresa">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="empresa" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="whatsapp">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_endereco">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="endereco" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="rg">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="data_nascimento">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="status">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="status" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="cpf">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="183" y="247" name="viajens_passageiros" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id_passageiro">
+      <datatype>INTEGER</datatype>
+      <relation table="passageiros" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="id_viajem">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="viajens" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id_passageiro</part>
+    </key>
+  </table>
+  <table x="404" y="292" name="pagamento_passageiro_viajem" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="id_passageiro">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="passageiros" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="id_viajem">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="viajens" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="data_pagamento">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="data_vencimento">
+      <datatype>DATE</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="valor">
+      <datatype>DECIMAL(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="parcela">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_forma_pagamento">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="forma_pagamento" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="id_status">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="status" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="190" y="384" name="forma_pagamento" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="1118" y="398" name="entidade" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="691" y="336" name="status" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>SERIAL</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="id_entidade">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="entidade" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="6" y="47" name="tipo_viajem" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="831" y="3" name="empresa" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="nome_empresa">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="cnpj">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="email">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="telefone">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_endereco">
+      <datatype>INTEGER</datatype>
+      <default>NULL</default>
+      <relation table="endereco" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="1049" y="208" name="endereco" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="cidade">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="endereco">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="bairro">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="estado">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="rua">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="487" y="4" name="custos" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>VARCHAR(100)</datatype>
+    </row>
+    <row null="0" autoincrement="0" name="id_viajem">
+      <datatype>SERIAL</datatype>
+      <relation table="viajens" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="descricao">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="valor">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table x="1096" y="10" name="usuario" color="#FFFFFF" relation-color="#000000">
+    <row null="0" autoincrement="1" name="id">
+      <datatype>INTEGER</datatype>
+    </row>
+    <row null="1" autoincrement="0" name="nome_usuario">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="username">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="password">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="email">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="telefone">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+    </row>
+    <row null="1" autoincrement="0" name="id_empresa">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="empresa" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <row null="1" autoincrement="0" name="status_id">
+      <datatype>VARCHAR(100)</datatype>
+      <default>NULL</default>
+      <relation table="status" row="id" on_update="CASCADE" on_delete="CASCADE"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+</sql>
