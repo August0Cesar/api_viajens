@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.augusto.request.dto.PassageiroRequestDto;
+
 @Entity
 @Table(name = "passageiros")
 public class Passageiros {
@@ -55,6 +57,17 @@ public class Passageiros {
 	private List<Viajens> viajens;
 
 	public Passageiros() {
+	}
+
+	public Passageiros(PassageiroRequestDto passageiro) {
+		this.email = passageiro.getEmail();
+		this.cpf = passageiro.getCpf();
+		this.dataCadastro = new Date();
+		this.dataNascimento = passageiro.getDataNascimento();
+		this.nomePassageiro = passageiro.getNomePassageiro();
+		this.rg = passageiro.getRg();
+		this.telefone = passageiro.getTelefone();
+		this.whatsapp = passageiro.getWhatsApp();
 	}
 
 	public List<Viajens> getViajens() {

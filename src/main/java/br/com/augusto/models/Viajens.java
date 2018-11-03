@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.augusto.request.dto.ViajemRequestDto;
+
 @Entity
 @Table(name = "viajens")
 public class Viajens {
@@ -28,7 +30,7 @@ public class Viajens {
 	@Column(name = "nome_viajem")
 	private String nomeViajem;
 
-	@Column(name = "valor_viajem", unique = true, nullable = false, precision = 8, scale = 4)
+	@Column(name = "valor_viajem",precision = 8, scale = 4)
 	private BigDecimal valorViajem;
 
 	private String descricao;
@@ -64,6 +66,16 @@ public class Viajens {
 	@JoinTable(name = "viajens_passageiros", joinColumns = { @JoinColumn(name = "viajem_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "passageiro_id") })
 	private List<Passageiros> passageiros;
+
+	public Viajens(ViajemRequestDto viajemRequestDto) {
+		this.nomeViajem = viajemRequestDto.getNomeViajem();
+		this.descricao = viajemRequestDto.getDescricao();
+		this.qtdPassageiros = viajemRequestDto.getQtdPassageiros();
+		this.dataInicio = viajemRequestDto.getDataInicio();
+		this.dataCadastro = new Date();
+		this.dataFinal = viajemRequestDto.getDataFinal();
+		this.valorViajem = viajemRequestDto.getValorViajem();
+	}
 
 	public Viajens() {
 	}
@@ -162,6 +174,14 @@ public class Viajens {
 
 	public void setPassageiros(List<Passageiros> passageiros) {
 		this.passageiros = passageiros;
+	}
+
+	@Override
+	public String toString() {
+		return "Viajens [id=" + id + ", nomeViajem=" + nomeViajem + ", valorViajem=" + valorViajem + ", descricao="
+				+ descricao + ", dataInicio=" + dataInicio + ", dataFinal=" + dataFinal + ", dataCadastro="
+				+ dataCadastro + ", qtdPassageiros=" + qtdPassageiros + ", tipoViajem=" + tipoViajem + ", empresas="
+				+ empresas + ", status=" + status + ", passageiros=" + passageiros + "]";
 	}
 
 }

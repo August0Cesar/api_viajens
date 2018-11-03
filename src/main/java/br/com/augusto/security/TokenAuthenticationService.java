@@ -10,15 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import br.com.augusto.models.Token;
+import br.com.augusto.models.Usuario;
+import br.com.augusto.repository.UsuarioRepository;
+import br.com.augusto.response.dto.LoginDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class TokenAuthenticationService {
 	// EXPIRATION_TIME = 10 dias
 	static final long EXPIRATION_TIME = 860_000_000;
@@ -27,17 +35,15 @@ public class TokenAuthenticationService {
 	static final String HEADER_STRING = "Authorization";
 
 	static void addAuthentication(HttpServletResponse response, String username) throws IOException {
+		
 		String JWT = Jwts.builder().setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET).compact();
 
-		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
-		/*response.setHeader("Content-Type", "application/json");
-
-		PrintWriter writer = response.getWriter();
-		Token token = new Token(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
-
-		writer.write(token.toString());*/
+		response.setHeader("Content-Type", "application/json");
+		byte[] body = new ObjectMapper().writeValueAsBytes(Collections.singletonMap(HEADER_STRING, TOKEN_PREFIX + " " + JWT));
+		
+        response.getOutputStream().write(body);
 
 	}
 

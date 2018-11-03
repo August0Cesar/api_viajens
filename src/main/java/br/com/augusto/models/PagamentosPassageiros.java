@@ -37,7 +37,7 @@ public class PagamentosPassageiros {
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 	
-	@Column(name = "valor", unique = true, nullable = false, precision = 8, scale = 4)
+	@Column(name = "valor", precision = 8, scale = 4)
 	private BigDecimal valor;
 	
 	private Integer parcela;

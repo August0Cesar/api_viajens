@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.augusto.request.dto.PassageiroRequestDto;
+
 @Entity
 public class Enderecos {
 	@Id
@@ -14,10 +16,18 @@ public class Enderecos {
 	private String cidade;
 	private String estado;
 	private String bairro;
-	
-	/*@OneToOne(mappedBy="customerRecord")
-	private Usuario usuario;*/
+
+	/*
+	 * @OneToOne(mappedBy="customerRecord") private Usuario usuario;
+	 */
 	public Enderecos() {
+	}
+
+	public Enderecos(PassageiroRequestDto passageiro) {
+		this.rua = passageiro.getRua();
+		this.cidade = passageiro.getCidade();
+		this.estado = passageiro.getEstado();
+		this.bairro = passageiro.getBairro();
 	}
 
 	public Integer getId() {

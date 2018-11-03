@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.augusto.request.dto.CustoViajemRequestDto;
+
 @Entity
 @Table(name = "custos")
 public class Custos {
@@ -19,14 +21,19 @@ public class Custos {
 	private Integer id;
 	private String descricao;
 
-	@Column(name = "valor", unique = true, nullable = false, precision = 8, scale = 4)
+	@Column(name = "valor", precision = 8, scale = 4)
 	private BigDecimal valor;
 
 	@ManyToOne
-	@JoinColumn(name = "empresa_id")
-	private Empresas empresas;
+	@JoinColumn(name = "viajens_id")
+	private Viajens viajem;
 
 	public Custos() {
+	}
+
+	public Custos(CustoViajemRequestDto custoViajem) {
+		this.descricao = custoViajem.getDescricao();
+		this.valor = custoViajem.getValor();
 	}
 
 	public BigDecimal getValor() {
@@ -37,12 +44,12 @@ public class Custos {
 		this.valor = valor;
 	}
 
-	public Empresas getEmpresas() {
-		return empresas;
+	public Viajens getViajem() {
+		return viajem;
 	}
 
-	public void setEmpresas(Empresas empresas) {
-		this.empresas = empresas;
+	public void setViajem(Viajens viajem) {
+		this.viajem = viajem;
 	}
 
 	public Integer getId() {
