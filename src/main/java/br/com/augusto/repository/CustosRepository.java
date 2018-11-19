@@ -16,4 +16,8 @@ public interface CustosRepository extends CrudRepository<Custos, Integer> {
 	@Query("select c from Custos c "
             + " where c.viajem.id = ?1 ")
 	List<Custos> findCustosByViajem(Integer viaemId);
+	
+	@Query("select c from Custos c "
+            + " where c.id = ?1 ")
+	Custos findCustoBycustoId(Integer custoId);
 }

@@ -1,0 +1,70 @@
+.circle-card{
+    border-radius:50%;
+    color: red;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    background:#fa0c01;
+    color:#fff;
+    width:45px;
+    height:45px;
+    line-height:45px;
+    vertical-align:middle;
+    text-align:center;
+    font-size:15px;
+    margin-bottom: 1em;
+}
+.scroll-horizonte{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.card-block {
+    min-height: 220px;
+    margin-bottom: 15px;
+}
+.card-principal{
+    padding-left:10px;
+    padding-right:10px;
+}
+.cardd {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-right: 1em;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.25rem;
+  }
+  .avatar-card{
+    height: 75px;
+    width: 75px;
+    margin-left: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 1em
+  }
+  hr{
+    padding-top: 0;
+    margin-top: 0;
+    border-color:#aaa;
+    box-sizing:border-box;
+    width:100%;  
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-left: 1em;
+    margin-left: 0;
+  } 
+  .card-perfil {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.25rem;
+  }

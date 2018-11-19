@@ -30,4 +30,8 @@ public interface PagamentosPassageirosRepository extends CrudRepository<Pagament
 	
 	@Query("select sum(c.valor) from PagamentosPassageiros c where c.viajem.id = ?1 and c.status.id = ?2 and c.passageiro.id = ?3")
 	BigDecimal findTotalPagamentosByPassageiro(Integer viajemId, Integer statusId, Integer passageiroId);
+	
+	@Query("select c from PagamentosPassageiros c where c.passageiro.id = ?1 "
+			+ " and c.viajem.id = ?2")
+	List<PagamentosPassageiros> findPagamentosByPassageiroAndViajem(Integer passageiroId, Integer viajemId);
 }

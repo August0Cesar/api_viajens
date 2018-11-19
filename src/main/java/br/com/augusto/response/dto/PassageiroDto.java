@@ -4,6 +4,7 @@ import java.util.Date;
 
 import br.com.augusto.models.Enderecos;
 import br.com.augusto.models.Passageiros;
+import br.com.augusto.utils.DateUtiuls;
 
 public class PassageiroDto {
 	private Integer id;
@@ -14,7 +15,7 @@ public class PassageiroDto {
 	private String rg;
 	private String cpf;
 	private ViajensDto viajem;// viajem mais proxima
-	private Date dataNascimento;
+	private String dataNascimento;
 	private Date dataCadastro;
 	private String status;
 	private String statusPagamento;
@@ -33,7 +34,7 @@ public class PassageiroDto {
 		this.rg = passageiros.getRg();
 		this.cpf = passageiros.getCpf();
 		if (passageiros.getDataNascimento() != null)
-			this.dataNascimento = passageiros.getDataNascimento();
+			this.dataNascimento = DateUtiuls.formatDateBr(passageiros.getDataNascimento());
 
 		if (passageiros.getDataCadastro() != null)
 			this.dataCadastro = passageiros.getDataCadastro();
@@ -60,7 +61,7 @@ public class PassageiroDto {
 		this.statusPagamento = statusPagamento;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
@@ -132,7 +133,7 @@ public class PassageiroDto {
 		this.cpf = cpf;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

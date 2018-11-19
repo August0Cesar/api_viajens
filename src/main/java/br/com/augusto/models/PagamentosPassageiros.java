@@ -14,43 +14,52 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.augusto.request.dto.PagamentoRequestDto;
+
 @Entity
 @Table(name = "pagamentos_passageiros")
 public class PagamentosPassageiros {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@OneToOne
 	@JoinColumn(name = "passageiro_id")
 	private Passageiros passageiro;
-	
+
 	@OneToOne
 	@JoinColumn(name = "viajem_id")
 	private Viajens viajem;
-	
+
 	@Column(name = "data_pagamento")
 	@Temporal(TemporalType.DATE)
 	private Date dataPagamento;
-	
+
 	@Column(name = "data_vencimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
-	
-	@Column(name = "valor", precision = 8, scale = 4)
+
+	@Column(name = "valor")//, precision = 12, scale = 4
 	private BigDecimal valor;
-	
+
 	private Integer parcela;
-	
+
 	@OneToOne
 	@JoinColumn(name = "forma_pagamento_id")
 	private FormaPagamento formaPagamento;
-	
+
 	@OneToOne
 	@JoinColumn(name = "status_id")
 	private Status status;
 
 	public PagamentosPassageiros() {
+	}
+
+	public PagamentosPassageiros(PagamentoRequestDto pagamentoRequest) {
+		this.dataPagamento = pagamentoRequest.getDataPagamento();
+		this.dataVencimento = pagamentoRequest.getDataVencimento();
+		this.parcela = pagamentoRequest.getParcela();
+		this.valor = pagamentoRequest.getValor();
 	}
 
 	public Integer getId() {
@@ -124,5 +133,5 @@ public class PagamentosPassageiros {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
+
 }

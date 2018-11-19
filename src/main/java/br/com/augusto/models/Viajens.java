@@ -30,7 +30,7 @@ public class Viajens {
 	@Column(name = "nome_viajem")
 	private String nomeViajem;
 
-	@Column(name = "valor_viajem",precision = 8, scale = 4)
+	@Column(name = "valor_viajem")
 	private BigDecimal valorViajem;
 
 	private String descricao;

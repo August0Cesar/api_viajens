@@ -2,6 +2,7 @@ package br.com.augusto.response.dto;
 
 import java.util.List;
 
+import br.com.augusto.models.Status;
 import br.com.augusto.models.TipoViajem;
 
 public class EmpresaDto {
@@ -9,16 +10,26 @@ public class EmpresaDto {
 	private Integer empresaId;
 	private List<ViajensDto> viajens;
 	private List<TipoViajem> tipoViajens;
+	private List<Status> listaStatus;
 
 	public EmpresaDto() {
 	}
 
-	public EmpresaDto(String nomeEmpresa, Integer empresaId, List<ViajensDto> viajens,List<TipoViajem> tipoViajens) {
+	public EmpresaDto(String nomeEmpresa, Integer empresaId, List<ViajensDto> viajens,List<TipoViajem> tipoViajens, List<Status> listaStatus) {
 		super();
 		this.nomeEmpresa = nomeEmpresa;
 		this.empresaId = empresaId;
 		this.viajens = viajens;
 		this.tipoViajens = tipoViajens;
+		this.listaStatus = listaStatus;
+	}
+
+	public List<Status> getListaStatus() {
+		return listaStatus;
+	}
+
+	public void setListaStatus(List<Status> listaStatus) {
+		this.listaStatus = listaStatus;
 	}
 
 	public List<TipoViajem> getTipoViajens() {

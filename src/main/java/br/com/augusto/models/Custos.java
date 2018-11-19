@@ -21,7 +21,7 @@ public class Custos {
 	private Integer id;
 	private String descricao;
 
-	@Column(name = "valor", precision = 8, scale = 4)
+	@Column(name = "valor")//, precision = 8, scale = 4
 	private BigDecimal valor;
 
 	@ManyToOne

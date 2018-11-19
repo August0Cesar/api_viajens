@@ -15,12 +15,26 @@ public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         final HttpServletResponse response = (HttpServletResponse) res;
+        //HttpServletResponse response = (HttpServletResponse) res;
+        /*
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Expose-Headers", "Location");
+        response.setStatus(HttpServletResponse.SC_OK);
+        chain.doFilter(req, res);
+*/        
+        
+        
+        
         HttpServletRequest request = (HttpServletRequest) req;
         String origin = request.getHeader("Origin");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Origin", origin != null && origin.contains("ws") ? "" : origin );
+        response.setHeader("Access-Control-Allow-Origin", "*" );
+        //response.setHeader("Access-Control-Allow-Origin", "http://vps11062.publiccloud.com.br");
         response.setHeader("Vary", "Origin");
-        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Authorization, Content-Type, Accept, X-CSRF-TOKEN");
         response.setHeader("Access-Control-Max-Age", "3600");
         if ("OPTIONS".equalsIgnoreCase(((HttpServletRequest) req).getMethod())) {

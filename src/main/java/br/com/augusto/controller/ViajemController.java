@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -188,4 +190,32 @@ public class ViajemController {
 			return null;
 		}
 	}
+
+	@PostMapping("/editCustoViajem")
+	@ResponseBody
+	public CustosDto editDetalhesViajens(@RequestBody CustoViajemRequestDto custoViajem,
+			@RequestParam Integer custoId) {
+		if (custoViajem == null && custoId == null)
+			return null;
+
+		Custos custo = custosRepository.findCustoBycustoId(custoId);
+		custo.setDescricao(custoViajem.getDescricao());
+		custo.setValor(custoViajem.getValor());
+		custosRepository.save(custo);
+
+		/*
+		 * Viajens viajem = viajemRepository.findViajemById(custoViajem.getViajemId());
+		 * if (viajem != null) { Custos custo = new Custos(custoViajem);
+		 * custo.setViajem(viajem); custosRepository.save(custo);
+		 */
+		return new CustosDto(custo);
+
+	}
+	
+	@PostMapping("/deleteCustoViajem")
+	public void deleteDetalhesViajens(@RequestParam Integer custoId) {
+		
+		custosRepository.deleteById(custoId);
+	}
+
 }

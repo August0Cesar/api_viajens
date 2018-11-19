@@ -7,13 +7,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.augusto.models.Status;
 import br.com.augusto.models.TipoViajem;
+import br.com.augusto.models.Token;
 import br.com.augusto.models.Usuario;
 import br.com.augusto.models.Viajens;
 import br.com.augusto.repository.CustosRepository;
@@ -24,6 +28,7 @@ import br.com.augusto.repository.UsuarioRepository;
 import br.com.augusto.repository.ViajemRepository;
 import br.com.augusto.response.dto.EmpresaDto;
 import br.com.augusto.response.dto.ViajensDto;
+import br.com.augusto.security.AccountCredentials;
 import br.com.augusto.security.TokenAuthenticationService;
 
 @RestController
@@ -76,8 +81,18 @@ public class EmpresaController {
 		List<TipoViajem> tipoViajens = (List<TipoViajem>) tipoViajemRepository.findAll();
 		if(tipoViajens.isEmpty())
 			tipoViajens = new ArrayList<>();
+		List<Status> listaStatus = (List<Status>) statusRepository.findAll();
 		
-		return new EmpresaDto(usuario.getEmpresas().getNome_empresa(), usuario.getEmpresas().getId(), lista,tipoViajens);
+		return new EmpresaDto(usuario.getEmpresas().getNome_empresa(), usuario.getEmpresas().getId(), lista,tipoViajens,listaStatus);
 	}
+	
+	/*@PostMapping(value="/login",consumes="application/json",produces="application/json")
+	@ResponseBody
+	public Token login(HttpServletRequest res,@RequestBody AccountCredentials credencials) {
+		
+		System.out.println("PAssei aqui");
+		return new Token("", "");
+		
+	}*/
 
 }

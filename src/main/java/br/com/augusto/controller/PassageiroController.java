@@ -2,10 +2,12 @@ package br.com.augusto.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.augusto.models.Empresas;
 import br.com.augusto.models.Enderecos;
+import br.com.augusto.models.FormaPagamento;
 import br.com.augusto.models.PagamentosPassageiros;
 import br.com.augusto.models.Passageiros;
 import br.com.augusto.models.Status;
@@ -22,14 +25,19 @@ import br.com.augusto.models.Viajens;
 import br.com.augusto.repository.CustosRepository;
 import br.com.augusto.repository.EmpresaRepository;
 import br.com.augusto.repository.EnderecosRepository;
+import br.com.augusto.repository.FormaPagamentoRepository;
 import br.com.augusto.repository.PagamentosPassageirosRepository;
 import br.com.augusto.repository.PassageirosRepository;
 import br.com.augusto.repository.StatusRepository;
 import br.com.augusto.repository.TipoViajemRepository;
 import br.com.augusto.repository.UsuarioRepository;
 import br.com.augusto.repository.ViajemRepository;
+import br.com.augusto.request.dto.PagamentoPassageiroRequestDto;
+import br.com.augusto.request.dto.PagamentoRequestDto;
 import br.com.augusto.request.dto.PassageiroRequestDto;
 import br.com.augusto.response.dto.DetalheViajemPassageiroDto;
+import br.com.augusto.response.dto.PagamentoPassageiroDto;
+import br.com.augusto.response.dto.PagamentoDto;
 import br.com.augusto.response.dto.PassageiroDto;
 import br.com.augusto.response.dto.ViajensDto;
 
@@ -46,7 +54,7 @@ public class PassageiroController {
 	CustosRepository custosRepository;
 
 	@Autowired
-	PagamentosPassageirosRepository pagamentosPassageiroscustosRepository;
+	PagamentosPassageirosRepository pagamentosPassageirosRepository;
 
 	@Autowired
 	StatusRepository statusRepository;
@@ -62,6 +70,9 @@ public class PassageiroController {
 
 	@Autowired
 	EmpresaRepository empresaRepository;
+	
+	@Autowired
+	FormaPagamentoRepository formaPagamentoRepository;
 
 	final String PAGAMENTO_PASSAGEIROS = "PAGAMENTO_PASSAGEIROS";
 	final String PASSAGEIRO = "PASSAGEIRO";
@@ -75,13 +86,14 @@ public class PassageiroController {
 		if (listaPassageiros.isEmpty()) {
 			return null;
 		}
+		listaPassageiros.sort((p1,p2)->p1.getNomePassageiro().compareTo(p2.getNomePassageiro()));
 		for (Passageiros passageiros : listaPassageiros) {
 			if (passageiros.getStatus().getId() == statusAtivo.getId()) {
 				PassageiroDto passageiroDto = new PassageiroDto(passageiros);
 				Integer qtdViajens = passageiros.getViajens().size();
 				passageiroDto.setQtdViajens(qtdViajens == null ? 0 : qtdViajens);
 				passageiroDto.setStatusPagamento(verificaStatusPagamento(
-						pagamentosPassageiroscustosRepository.findPagamentosByPassageiro(passageiros.getId())));
+						pagamentosPassageirosRepository.findPagamentosByPassageiro(passageiros.getId())));
 				passageiroDto.setViajem(verificaViajemProxima(passageiros.getViajens()));
 				listaPassageiroDto.add(passageiroDto);
 			}
@@ -121,7 +133,6 @@ public class PassageiroController {
 	@PostMapping("/passageiros")
 	@ResponseBody
 	public PassageiroDto cadastroPassageiro(@RequestBody PassageiroRequestDto passageiro) {
-		System.out.println(passageiro.toString());
 		List<Viajens> viajens = new ArrayList<>();
 		Status status = statusRepository.findStatusByEntidade(PASSAGEIRO, "ATIVO");
 		Empresas empresa = empresaRepository.findEmpresaById(passageiro.getEmpresaId());
@@ -139,6 +150,28 @@ public class PassageiroController {
 		viajemRepository.save(viajem);
 
 		return new PassageiroDto(passageiros);
+	}
+	@PostMapping("/editPassageiro")
+	@ResponseBody
+	public PassageiroDto editaPassageiro(@RequestBody PassageiroRequestDto passageiro,@RequestParam Integer passageiroId) {
+		Passageiros passageiroAtual = passageirosRepository.findPassageiroById(passageiroId);
+		Enderecos endereco = enderecoRepository.fndEnderecoById(passageiroAtual.getEndereco().getId());
+		endereco.setBairro(passageiro.getBairro());
+		endereco.setCidade(passageiro.getCidade());
+		endereco.setEstado(passageiro.getEstado());
+		endereco.setRua(passageiro.getRua());
+		enderecoRepository.save(endereco);
+		
+		passageiroAtual.setCpf(passageiro.getCpf());
+		passageiroAtual.setRg(passageiro.getRg());
+		passageiroAtual.setEmail(passageiro.getEmail());
+		passageiroAtual.setDataNascimento(passageiro.getDataNascimento());
+		passageiroAtual.setTelefone(passageiro.getTelefone());
+		passageiroAtual.setWhatsapp(passageiro.getWhatsApp());
+		passageiroAtual.setNomePassageiro(passageiro.getNomePassageiro());
+		passageirosRepository.save(passageiroAtual);
+
+		return new PassageiroDto(passageiroAtual);
 	}
 
 	@PostMapping("/deletePassageiros")
@@ -158,12 +191,12 @@ public class PassageiroController {
 			viajem.getPassageiros().stream().filter(passageiro -> passageiro.getStatus().getId() == statusAtivo.getId())
 					.forEach(passageiro -> {
 						DetalheViajemPassageiroDto detalheViajemPassageiro = new DetalheViajemPassageiroDto();
-						Integer qtdParcelasPagas = pagamentosPassageiroscustosRepository
+						Integer qtdParcelasPagas = pagamentosPassageirosRepository
 								.findQtdParcelasPagasByPassageiro(viajem.getId(), statusPagamento.getId(),
 										passageiro.getId());
-						Integer qtdParcelas = pagamentosPassageiroscustosRepository
+						Integer qtdParcelas = pagamentosPassageirosRepository
 								.findQtdParcelasByPassageiro(viajem.getId(), passageiro.getId());
-						BigDecimal valorPagoPorPassageiro = pagamentosPassageiroscustosRepository
+						BigDecimal valorPagoPorPassageiro = pagamentosPassageirosRepository
 								.findTotalPagamentosByPassageiro(viajem.getId(), statusPagamento.getId(),
 										passageiro.getId());
 
@@ -178,5 +211,57 @@ public class PassageiroController {
 		}
 		return listaDetalheViajemPassageiroDto;
 	}
-
+	
+	@PostMapping("/pagamentoPassageiros")
+	@ResponseBody
+	public PagamentoPassageiroDto cadastroPassageiro(@RequestBody PagamentoPassageiroRequestDto pagamentoPassageiroRequestDto) {
+		List<PagamentosPassageiros> pagamentos = pagamentosPassageirosRepository.findPagamentosByPassageiroAndViajem(pagamentoPassageiroRequestDto.getPassageiroId(),
+				pagamentoPassageiroRequestDto.getViajemId());
+		Viajens viajem = viajemRepository.findViajemById(pagamentoPassageiroRequestDto.getViajemId());
+		Passageiros passageiro = passageirosRepository.findPassageiroById(pagamentoPassageiroRequestDto.getPassageiroId());
+		
+		PagamentoPassageiroDto retorno = new PagamentoPassageiroDto();
+		retorno.setPassageiroId(passageiro.getId());
+		retorno.setNomePassageiro(passageiro.getNomePassageiro());
+		retorno.setNomeViajem(viajem.getNomeViajem());
+		retorno.setViajemId(viajem.getId());
+		retorno.setValorViajem(viajem.getValorViajem());
+		
+		List<PagamentoDto> listaPagamentos = new ArrayList<>();
+		if(!pagamentos.isEmpty()) {
+			pagamentos.forEach(p ->{
+				PagamentoDto pagamentoDto = new PagamentoDto(p);
+				listaPagamentos.add(pagamentoDto);
+			});
+		}
+		retorno.setListaPagamentos(listaPagamentos);
+		retorno.setStatus(verificaStatusPagamento(pagamentos));
+		return retorno;
+	}
+	
+	@PostMapping("/deletePagamentoPassageiro")
+	public void deletePagamentoPassageiro(@RequestParam Integer pagamentoId) {
+		
+		pagamentosPassageirosRepository.deleteById(pagamentoId);
+	}
+	
+	@PostMapping("/savePagamentoPassageiro")
+	public void deletePagamentoPassageiro(@RequestBody PagamentoRequestDto pagamentoRequest) {
+		Status statusPago = statusRepository.findStatusByEntidade(PAGAMENTO_PASSAGEIROS, "PAGO");
+		Status statusEmAberto = statusRepository.findStatusByEntidade(PAGAMENTO_PASSAGEIROS, "PARCELAS EM ABERTO");
+		Viajens viajem = viajemRepository.findViajemById(pagamentoRequest.getViajemId());
+		Passageiros passageiro = passageirosRepository.findPassageiroById(pagamentoRequest.getPassageiroId());
+		FormaPagamento formaPagamento = formaPagamentoRepository.findFormaPagamentoById(pagamentoRequest.getFormaPagamentoId());
+		PagamentosPassageiros pagamento = new PagamentosPassageiros(pagamentoRequest);
+		pagamento.setPassageiro(passageiro);
+		pagamento.setViajem(viajem);
+		pagamento.setFormaPagamento(formaPagamento);
+		if(pagamentoRequest.getDataPagamento() == null) {
+			pagamento.setStatus(statusEmAberto);
+		}else {
+			pagamento.setStatus(statusPago);
+		}
+		pagamentosPassageirosRepository.save(pagamento);
+	}
+	
 }

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <title>Detalhes Viajens</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
+    <link href="assets/css/app.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-expand-lg bg-danger" role="navigation-demo">
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="/template"><i class="material-icons" style="font-size:35px">arrow_back</i></a>
+            </div>
+            <div class="collapse navbar-collapse" id="nomeEmpresa">
+                <h3>Andreia Tour | Excursões</h3>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <h3 class="text-center">Detalhes da Viajem</h3>
+                    </li>&nbsp &nbsp
+                    <li class="dropdown nav-item">
+                        <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+                            <div class="profile-photo-small">
+                                <img src="./assets/img/faces/avatar.jpg" alt="Circle Image" class="rounded-circle img-fluid">
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item">Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-->
+    </nav>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row" id="container">
+
+            </div>
+        </div>
+    </div>
+
+    <!--Detalhes da Viajem-->
+    <!--Modal Cadastro de Custo -->
+    <div class="modal fade bd-example-modal-lg" id="modalCusto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="container" onsubmit="detalhesViajemController.cadastroEditCusto(event)" name="formPassageiro">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cadastro de Custo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                                <input type="hidden" class="form-control" id="idCusto">
+                            <div class="form-group has-danger">
+                                <label for="descricaoCusto" class="bmd-label-floating">Custo</label>
+                                <input type="text" class="form-control" id="descricaoCusto">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group has-danger">
+                                <label for="valorCusto" class="bmd-label-floating">Valor</label>
+                                <input type="text" class="form-control" id="valorCusto">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Salvar Custo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Modal Cadastro de Custo-->
+    <!--Modal Cadastro de Passageiro -->
+  <div class="modal fade bd-example-modal-lg" id="modalPassageiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form class="container" onsubmit="detalhesViajemController.cadastroPassageiro(event)" name="formPassageiro">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastro de Passageiro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="viajemPassageiro" class="bmd-label-floating">Viajem</label>
+              <select id="viajemPassageiro" class="form-control">
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="nomePassageiro" class="bmd-label-floating">Nome do Passageiro</label>
+              <input type="text" class="form-control" id="nomePassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="emailPassageiro" class="bmd-label-floating">Email</label>
+              <input type="text" class="form-control" id="emailPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="telefonePassageiro" class="bmd-label-floating">Telefone</label>
+              <input type="text" name="tel" onblur="viajemController.validateTelefone(formPassageiro.tel)" onkeypress="viajemController.MascaraTelefone(event)"
+                class="form-control" id="telefonePassageiro">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="whatsappPassageiro" class="bmd-label-floating">WhatsApp</label>
+              <input type="text" class="form-control" id="whatsappPassageiro">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label class="label-control">Data Nascimento</label>
+              <input type="text" class="form-control datetimepicker" id="dataNascimentoPassageiro" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="ruaPassageiro" class="bmd-label-floating">Endereço</label>
+              <input type="text" class="form-control" id="ruaPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-2 col-sm-2">
+            <div class="form-group has-danger">
+              <label for="numeroRuaPassageiro" class="bmd-label-floating">Nº</label>
+              <input type="number" class="form-control" id="numeroRuaPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="cidadePassageiro" class="bmd-label-floating">Cidade</label>
+              <input type="text" class="form-control" id="cidadePassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="bairroPassageiro" class="bmd-label-floating">Bairro</label>
+              <input type="text" class="form-control" id="bairroPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-sm-4">
+            <div class="form-group has-danger">
+              <label for="estadoPassageiro" class="bmd-label-floating">Estado</label>
+              <input type="text" class="form-control" id="estadoPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-3 col- sm-4">
+            <div class="form-group has-danger">
+              <label for="cpfPassageiro">Cpf</label>
+              <input type="text" class="form-control" id="cpfPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-lg-3 col- sm-4">
+            <div class="form-group has-danger">
+              <label for="rgPassageiro">RG</label>
+              <input type="text" class="form-control" id="rgPassageiro" aria-describedby="emailHelp">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-danger">Salvar Passageiro</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--Modal Cadastro de Passageiro-->
+
+
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <script src="./assets/js/plugins/moment.min.js"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--	Plugin for Sharrre btn -->
+    <script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
+
+    <!--   Codigo da Aplicacao   -->
+    <script src="./app/controller/DetalhesViajemController.js" type="text/javascript"></script>
+    <script src="./app/view/DetalhesViajemView.js" type="text/javascript"></script>
+    <script src="./app/view/EmpresaView.js" type="text/javascript"></script>
+    <script src="./app/service/HttpService.js" type="text/javascript"></script>
+    <script src="./app/service/DetalhesViajemService.js" type="text/javascript"></script>
+    <script src="./app/service/PassageiroService.js" type="text/javascript"></script>
+    <script src="./app/model/Passageiro.js" type="text/javascript"></script>
+    <script src="./app/model/Custo.js" type="text/javascript"></script>
+    <script src="./app/utils/DateHelper.js" type="text/javascript"></script>
+    <script>
+        let detalhesViajemController = new DetalhesViajemController();
+    </script>
+    <script>
+        $(document).ready(function () {
+            //init DateTimePickers
+            materialKit.initFormExtendedDatetimepickers();
+
+            // Sliders Init
+            materialKit.initSliders();
+        });
+
+
+        function scrollToDownload() {
+            if ($('.section-download').length != 0) {
+                $("html, body").animate({
+                    scrollTop: $('.section-download').offset().top
+                }, 1000);
+            }
+        }
+
+
+        $(document).ready(function () {
+
+            $('#facebook').sharrre({
+                share: {
+                    facebook: true
+                },
+                enableHover: false,
+                enableTracking: false,
+                enableCounter: false,
+                click: function (api, options) {
+                    api.simulateClick();
+                    api.openPopup('facebook');
+                },
+                template: '<i class="fab fa-facebook-f"></i> Facebook',
+                url: 'https://demos.creative-tim.com/material-kit/index.html'
+            });
+
+            $('#googlePlus').sharrre({
+                share: {
+                    googlePlus: true
+                },
+                enableCounter: false,
+                enableHover: false,
+                enableTracking: true,
+                click: function (api, options) {
+                    api.simulateClick();
+                    api.openPopup('googlePlus');
+                },
+                template: '<i class="fab fa-google-plus"></i> Google',
+                url: 'https://demos.creative-tim.com/material-kit/index.html'
+            });
+
+            $('#twitter').sharrre({
+                share: {
+                    twitter: true
+                },
+                enableHover: false,
+                enableTracking: false,
+                enableCounter: false,
+                buttons: {
+                    twitter: {
+                        via: 'CreativeTim'
+                    }
+                },
+                click: function (api, options) {
+                    api.simulateClick();
+                    api.openPopup('twitter');
+                },
+                template: '<i class="fab fa-twitter"></i> Twitter',
+                url: 'https://demos.creative-tim.com/material-kit/index.html'
+            });
+
+        });
+    </script>
+</body>
+
+</html>
