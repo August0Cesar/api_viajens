@@ -223,7 +223,13 @@ public class PassageiroController {
 		retorno.setNomePassageiro(passageiro.getNomePassageiro());
 		retorno.setNomeViajem(viajem.getNomeViajem());
 		retorno.setViajemId(viajem.getId());
-		retorno.setValorViajem(viajem.getValorViajem());
+		if(passageiro.getCondicaoEspecial() == null ) {
+			retorno.setValorViajem(viajem.getValorViajem());
+		}else if(passageiro.getCondicaoEspecial()){
+			retorno.setValorViajem(passageiro.getValorViajem());
+		}else {
+			retorno.setValorViajem(viajem.getValorViajem());
+		}
 		
 		List<PagamentoDto> listaPagamentos = new ArrayList<>();
 		if(!pagamentos.isEmpty()) {
