@@ -250,16 +250,33 @@ public class PassageiroController {
 		Viajens viajem = viajemRepository.findViajemById(pagamentoRequest.getViajemId());
 		Passageiros passageiro = passageirosRepository.findPassageiroById(pagamentoRequest.getPassageiroId());
 		FormaPagamento formaPagamento = formaPagamentoRepository.findFormaPagamentoById(pagamentoRequest.getFormaPagamentoId());
-		PagamentosPassageiros pagamento = new PagamentosPassageiros(pagamentoRequest);
-		pagamento.setPassageiro(passageiro);
-		pagamento.setViajem(viajem);
-		pagamento.setFormaPagamento(formaPagamento);
-		if(pagamentoRequest.getDataPagamento() == null) {
-			pagamento.setStatus(statusEmAberto);
+		
+		if(pagamentoRequest.getPagamentoId() == null) {
+			PagamentosPassageiros pagamento = new PagamentosPassageiros(pagamentoRequest);
+			pagamento.setPassageiro(passageiro);
+			pagamento.setViajem(viajem);
+			pagamento.setFormaPagamento(formaPagamento);
+			if(pagamentoRequest.getDataPagamento() == null) {
+				pagamento.setStatus(statusEmAberto);
+			}else {
+				pagamento.setStatus(statusPago);
+			}
+			pagamentosPassageirosRepository.save(pagamento);
 		}else {
-			pagamento.setStatus(statusPago);
+			PagamentosPassageiros pagamento = pagamentosPassageirosRepository.findPagamentoById(pagamentoRequest.getPagamentoId());
+			pagamento.setPassageiro(passageiro);
+			pagamento.setViajem(viajem);
+			pagamento.setFormaPagamento(formaPagamento);
+			pagamento.setDataPagamento(pagamentoRequest.getDataPagamento());
+			pagamento.setDataVencimento(pagamentoRequest.getDataVencimento());
+			if(pagamentoRequest.getDataPagamento() == null) {
+				pagamento.setStatus(statusEmAberto);
+			}else {
+				pagamento.setStatus(statusPago);
+			}
+			pagamentosPassageirosRepository.save(pagamento);
 		}
-		pagamentosPassageirosRepository.save(pagamento);
+		
 	}
 	
 }

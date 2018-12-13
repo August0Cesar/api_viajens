@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PagamentoRequestDto {
+	private Integer pagamentoId;
 	private Integer parcela;
 	private BigDecimal valor;
 	private Integer passageiroId;
@@ -13,8 +14,9 @@ public class PagamentoRequestDto {
 	private Date dataVencimento;
 
 	public PagamentoRequestDto(Integer parcela, BigDecimal valor, Integer passageiroId, Integer viajemId,
-			Integer formaPagamentoId, Date dataPagamento, Date dataVencimento) {
+			Integer formaPagamentoId, Date dataPagamento, Date dataVencimento,Integer pagamentoId) {
 		super();
+		this.pagamentoId = pagamentoId;
 		this.parcela = parcela;
 		this.valor = valor;
 		this.passageiroId = passageiroId;
@@ -26,7 +28,14 @@ public class PagamentoRequestDto {
 
 	public PagamentoRequestDto() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getPagamentoId() {
+		return pagamentoId;
+	}
+
+	public void setPagamentoId(Integer pagamentoId) {
+		this.pagamentoId = pagamentoId;
 	}
 
 	public Integer getParcela() {

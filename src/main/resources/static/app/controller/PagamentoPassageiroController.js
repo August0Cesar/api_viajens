@@ -49,9 +49,9 @@ class PagamentoPassageiroController {
         let pagamentoPassageiro = new PagamentoPassageiro(this._inputNumeroParcela.value, this._inputValorParcela.value, this._inputDataPagamento.value,
              this._inputDataVencimento.value,this._inputFormaPagamento.value, viajemId, passageiroId,this._inputPagamentoId.value);
         $('#modalPagamento').modal('hide');
-        if (pagamentoId == '') {
+        /*if (pagamentoId == '') {
             console.log('cadastrar');
-            console.log(JSON.stringify(pagamentoPassageiro));
+            console.log(JSON.stringify(pagamentoPassageiro));*/
             this._pagamentoPassageiroService.savePagamento(JSON.stringify(pagamentoPassageiro))
                 .then(data => {
                     console.log(data);
@@ -61,19 +61,11 @@ class PagamentoPassageiroController {
                     console.log(error);
                     alert('Erro ao tentar cadastrar novo custo.');
                 });
-        } else {
+        /*} else {
             console.log('editar' + pagamentoId);
             console.log(JSON.stringify(pagamentoPassageiro));
-            // this._detalhesViajemService.editCusto(JSON.stringify(custo), custoId)
-            //     .then(data => {
-            //         console.log(data);
-            //         this.buscaDetalhesViajem();
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //         alert('Erro ao tentar cadastrar novo custo.');
-            //     });
-        }
+            
+        }*/
         this.limpaFormularioCusto();
     }
     limpaFormularioCusto() {

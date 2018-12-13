@@ -34,4 +34,7 @@ public interface PagamentosPassageirosRepository extends CrudRepository<Pagament
 	@Query("select c from PagamentosPassageiros c where c.passageiro.id = ?1 "
 			+ " and c.viajem.id = ?2")
 	List<PagamentosPassageiros> findPagamentosByPassageiroAndViajem(Integer passageiroId, Integer viajemId);
+	
+	@Query("select p from PagamentosPassageiros p  where p.id = ?1 ")
+	PagamentosPassageiros findPagamentoById(Integer pagamentoId);
 }
