@@ -1,5 +1,6 @@
 package br.com.augusto.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,12 @@ public class Passageiros {
 	private String whatsapp;
 	private String rg;
 	private String cpf;
-
+	private Boolean condicaoEspecial;
+	private String condicoesEspeciais;
+	
+	@Column(name = "valor_viajem")
+	private BigDecimal valorViajem;
+	
 	@Column(name = "data_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
@@ -68,6 +74,33 @@ public class Passageiros {
 		this.rg = passageiro.getRg();
 		this.telefone = passageiro.getTelefone();
 		this.whatsapp = passageiro.getWhatsApp();
+		this.condicoesEspeciais = passageiro.getCondicoesEspeciais();
+		this.condicaoEspecial= passageiro.getCondicaoEspecial();
+		this.valorViajem = passageiro.getValorViajem();
+	}
+
+	public BigDecimal getValorViajem() {
+		return valorViajem;
+	}
+
+	public void setValorViajem(BigDecimal valorViajem) {
+		this.valorViajem = valorViajem;
+	}
+
+	public Boolean getCondicaoEspecial() {
+		return condicaoEspecial;
+	}
+
+	public void setCondicaoEspecial(Boolean condicaoEspecial) {
+		this.condicaoEspecial = condicaoEspecial;
+	}
+
+	public String getCondicoesEspeciais() {
+		return condicoesEspeciais;
+	}
+
+	public void setCondicoesEspeciais(String condicoesEspeciais) {
+		this.condicoesEspeciais = condicoesEspeciais;
 	}
 
 	public List<Viajens> getViajens() {

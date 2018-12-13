@@ -72,7 +72,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-sm-6">
-                                <input type="hidden" class="form-control" id="idCusto">
+                            <input type="hidden" class="form-control" id="idCusto">
                             <div class="form-group has-danger">
                                 <label for="descricaoCusto" class="bmd-label-floating">Custo</label>
                                 <input type="text" class="form-control" id="descricaoCusto">
@@ -92,111 +92,147 @@
     </div>
     <!--Modal Cadastro de Custo-->
     <!--Modal Cadastro de Passageiro -->
-  <div class="modal fade bd-example-modal-lg" id="modalPassageiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <form class="container" onsubmit="detalhesViajemController.cadastroPassageiro(event)" name="formPassageiro">
-        <div class="modal-header">
-          <h5 class="modal-title">Cadastro de Passageiro</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade bd-example-modal-lg" id="modalPassageiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="container" onsubmit="detalhesViajemController.cadastroPassageiro(event)" name="formPassageiro">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cadastro de Passageiro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="viajemPassageiro" class="bmd-label-floating">Viajem</label>
+                                    <select id="viajemPassageiro" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="nomePassageiro" class="bmd-label-floating">Nome do Passageiro</label>
+                                    <input type="text" class="form-control" id="nomePassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="emailPassageiro" class="bmd-label-floating">Email</label>
+                                    <input type="text" class="form-control" id="emailPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="telefonePassageiro" class="bmd-label-floating">Telefone</label>
+                                    <input type="text" name="tel" onblur="viajemController.validateTelefone(formPassageiro.tel)" onkeypress="viajemController.MascaraTelefone(event)"
+                                        class="form-control" id="telefonePassageiro">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="whatsappPassageiro" class="bmd-label-floating">WhatsApp</label>
+                                    <input type="text" class="form-control" id="whatsappPassageiro">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label class="label-control">Data Nascimento</label>
+                                    <input type="text" class="form-control datetimepicker" id="dataNascimentoPassageiro" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="ruaPassageiro" class="bmd-label-floating">Endereço</label>
+                                    <input type="text" class="form-control" id="ruaPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-2">
+                                <div class="form-group has-danger">
+                                    <label for="numeroRuaPassageiro" class="bmd-label-floating">Nº</label>
+                                    <input type="number" class="form-control" id="numeroRuaPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="cidadePassageiro" class="bmd-label-floating">Cidade</label>
+                                    <input type="text" class="form-control" id="cidadePassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="bairroPassageiro" class="bmd-label-floating">Bairro</label>
+                                    <input type="text" class="form-control" id="bairroPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="estadoPassageiro" class="bmd-label-floating">Estado</label>
+                                    <input type="text" class="form-control" id="estadoPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col- sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="cpfPassageiro">Cpf</label>
+                                    <input type="text" class="form-control" id="cpfPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col- sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="rgPassageiro">RG</label>
+                                    <input type="text" class="form-control" id="rgPassageiro" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="form-group has-danger">
+                                <div class="togglebutton">
+                                    <label>
+                                            Condição especial
+                                        <input type="checkbox" id="checkCondicao" onclick="detalhesViajemController.marcaCondicaoEspecial(event)">
+                                        <span class="toggle"></span>
+                                        
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-none" id="linhaCondicaoEspecial"><!-- show-->
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="form-group has-danger">
+                                    <label for="valorPassagem" class="bmd-label-floating">Valor da Passajem</label>
+                                    <input type="text" class="form-control" id="valorPassagem" placeholder="000.00">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group has-danger">
+                                    <label for="condicoesEspeciais" class="bmd-label-floating">Mês</label>
+                                    <select id="condicoesEspeciais" class="form-control">
+                                        <option selected>Escolha a Condição Especial</option>
+                                        <option value="1">Adulto</option>
+                                        <option value="2">Crianças</option>
+                                        <option value="3">Combo</option>
+                                        <option value="4">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Salvar Passageiro</button>
+                    </div>
+                    
+                </form>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="viajemPassageiro" class="bmd-label-floating">Viajem</label>
-              <select id="viajemPassageiro" class="form-control">
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="nomePassageiro" class="bmd-label-floating">Nome do Passageiro</label>
-              <input type="text" class="form-control" id="nomePassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="emailPassageiro" class="bmd-label-floating">Email</label>
-              <input type="text" class="form-control" id="emailPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="telefonePassageiro" class="bmd-label-floating">Telefone</label>
-              <input type="text" name="tel" onblur="viajemController.validateTelefone(formPassageiro.tel)" onkeypress="viajemController.MascaraTelefone(event)"
-                class="form-control" id="telefonePassageiro">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="whatsappPassageiro" class="bmd-label-floating">WhatsApp</label>
-              <input type="text" class="form-control" id="whatsappPassageiro">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label class="label-control">Data Nascimento</label>
-              <input type="text" class="form-control datetimepicker" id="dataNascimentoPassageiro" />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="ruaPassageiro" class="bmd-label-floating">Endereço</label>
-              <input type="text" class="form-control" id="ruaPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-2 col-sm-2">
-            <div class="form-group has-danger">
-              <label for="numeroRuaPassageiro" class="bmd-label-floating">Nº</label>
-              <input type="number" class="form-control" id="numeroRuaPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="cidadePassageiro" class="bmd-label-floating">Cidade</label>
-              <input type="text" class="form-control" id="cidadePassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="bairroPassageiro" class="bmd-label-floating">Bairro</label>
-              <input type="text" class="form-control" id="bairroPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-4">
-            <div class="form-group has-danger">
-              <label for="estadoPassageiro" class="bmd-label-floating">Estado</label>
-              <input type="text" class="form-control" id="estadoPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-3 col- sm-4">
-            <div class="form-group has-danger">
-              <label for="cpfPassageiro">Cpf</label>
-              <input type="text" class="form-control" id="cpfPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-          <div class="col-lg-3 col- sm-4">
-            <div class="form-group has-danger">
-              <label for="rgPassageiro">RG</label>
-              <input type="text" class="form-control" id="rgPassageiro" aria-describedby="emailHelp">
-            </div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-danger">Salvar Passageiro</button>
-      </form>
     </div>
-  </div>
-</div>
-<!--Modal Cadastro de Passageiro-->
+    <!--Modal Cadastro de Passageiro-->
 
 
     <!--   Core JS Files   -->

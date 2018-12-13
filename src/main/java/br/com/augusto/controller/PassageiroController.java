@@ -2,12 +2,10 @@ package br.com.augusto.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -214,7 +212,7 @@ public class PassageiroController {
 	
 	@PostMapping("/pagamentoPassageiros")
 	@ResponseBody
-	public PagamentoPassageiroDto cadastroPassageiro(@RequestBody PagamentoPassageiroRequestDto pagamentoPassageiroRequestDto) {
+	public PagamentoPassageiroDto buscaPagamentosPassageiros(@RequestBody PagamentoPassageiroRequestDto pagamentoPassageiroRequestDto) {
 		List<PagamentosPassageiros> pagamentos = pagamentosPassageirosRepository.findPagamentosByPassageiroAndViajem(pagamentoPassageiroRequestDto.getPassageiroId(),
 				pagamentoPassageiroRequestDto.getViajemId());
 		Viajens viajem = viajemRepository.findViajemById(pagamentoPassageiroRequestDto.getViajemId());
@@ -246,7 +244,7 @@ public class PassageiroController {
 	}
 	
 	@PostMapping("/savePagamentoPassageiro")
-	public void deletePagamentoPassageiro(@RequestBody PagamentoRequestDto pagamentoRequest) {
+	public void savePagamentoPassageiro(@RequestBody PagamentoRequestDto pagamentoRequest) {
 		Status statusPago = statusRepository.findStatusByEntidade(PAGAMENTO_PASSAGEIROS, "PAGO");
 		Status statusEmAberto = statusRepository.findStatusByEntidade(PAGAMENTO_PASSAGEIROS, "PARCELAS EM ABERTO");
 		Viajens viajem = viajemRepository.findViajemById(pagamentoRequest.getViajemId());

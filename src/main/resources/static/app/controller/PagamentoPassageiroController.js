@@ -2,11 +2,13 @@ class PagamentoPassageiroController {
     //http://www.fabiobmed.com.br/excelente-codigo-para-mascara-e-validacao-de-cnpj-cpf-cep-data-e-telefone/
     constructor() {
         let $ = document.querySelector.bind(document);
+        localStorage.removeItem('dadosPassageiros');
+        // localStorage.removeItem('viajemAtiva');
 
         this.nomeEmpresa = $('#nomeEmpresa');
 
         //fazendo bind dos inputs do formulario Custo
-        this.inputPagamentoId = $('#pagamentoId');
+        this._inputPagamentoId = $('#pagamentoId');
         this._inputNumeroParcela = $('#numeroParcela');
         this._inputValorParcela = $('#valorParcela');
         this._inputDataPagamento = $('#dataPagamento');
@@ -41,11 +43,11 @@ class PagamentoPassageiroController {
 
     cadastroEditPagamento(event) {
         event.preventDefault();
-        let pagamentoId = this.inputPagamentoId.value;
+        let pagamentoId = this._inputPagamentoId.value;
         let viajemId = localStorage.getItem('viajemAtiva');
         let passageiroId = localStorage.getItem('passageiroAtivo');
         let pagamentoPassageiro = new PagamentoPassageiro(this._inputNumeroParcela.value, this._inputValorParcela.value, this._inputDataPagamento.value,
-             this._inputDataVencimento.value,this._inputFormaPagamento.value, viajemId, passageiroId);
+             this._inputDataVencimento.value,this._inputFormaPagamento.value, viajemId, passageiroId,this._inputPagamentoId.value);
         $('#modalPagamento').modal('hide');
         if (pagamentoId == '') {
             console.log('cadastrar');
@@ -60,7 +62,7 @@ class PagamentoPassageiroController {
                     alert('Erro ao tentar cadastrar novo custo.');
                 });
         } else {
-            console.log('editar' + custoId);
+            console.log('editar' + pagamentoId);
             console.log(JSON.stringify(pagamentoPassageiro));
             // this._detalhesViajemService.editCusto(JSON.stringify(custo), custoId)
             //     .then(data => {
@@ -75,7 +77,7 @@ class PagamentoPassageiroController {
         this.limpaFormularioCusto();
     }
     limpaFormularioCusto() {
-        this.inputPagamentoId.value = '';
+        this._inputPagamentoId.value = '';
         this._inputNumeroParcela.value = '';
         this._inputValorParcela.value = '';
         this._inputDataPagamento.value = '';
@@ -95,38 +97,24 @@ class PagamentoPassageiroController {
             });
     }
 
-    // excluiCusto(event, custoId) {
-    //     event.preventDefault();
-    //     this._detalhesViajemService.deleteCusto(custoId)
-    //         .then(data => {
-    //             this.buscaDetalhesViajem();
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //             alert('Erro ao tentar excluir custo');
-    //         });
-    // }
+    openEditPagamento(event, pagamentoId) {
+        console.log('id pagamento: '+pagamentoId);
+        event.preventDefault();
+        let dadosPagamentos = localStorage.getItem('dadosPagamentos');
 
-    // editCusto(event, custoId) {
-    //     event.preventDefault();
-    //     let dados = localStorage.getItem('dados');
+        let pagamentos = JSON.parse(dadosPagamentos);
+        console.log(pagamentos);
+        pagamentos.listaPagamentos.forEach(element => {
+            if (pagamentoId == element.pagamentoId) {
+                this._inputPagamentoId.value = pagamentoId;
+                this._inputNumeroParcela.value = element.parcela;
+                this._inputValorParcela.value = element.valor;
+                this._inputDataPagamento.value = element.dataPagamento;
+                this._inputDataVencimento.value =  element.dataVencimento;
+                this._inputFormaPagamento.value = element.formaPagamento;
+            }
 
-    //     let custos = JSON.parse(dados);
-    //     custos.custos.forEach(element => {
-    //         if (custoId == element.id) {
-    //             this._inputCustoId.value = element.id;
-    //             this._inputDescricaoCusto.value = element.descricao;
-    //             this._inputValorCusto.value = element.valor;
-    //         }
-
-    //     });
-    //     $('#modalCusto').modal('show');
-    // }
-
-    // openDetalhesPagamento(event, data) {
-    //     event.preventDefault();
-    //     console.log(data);
-    //     localStorage.setItem('passageiroAtivo', data);
-    //     window.location.replace("historicoPagamentos.html");
-    // }
+        });
+        $('#modalPagamento').modal('show');
+    }
 }

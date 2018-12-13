@@ -1,5 +1,6 @@
 package br.com.augusto.request.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PassageiroRequestDto {
@@ -16,13 +17,16 @@ public class PassageiroRequestDto {
 	private String whatsApp;
 	private Integer viajemId;
 	private Integer empresaId;
+	private Boolean condicaoEspecial;
+	private String condicoesEspeciais;
+	private BigDecimal valorViajem;
 
 	public PassageiroRequestDto() {
 	}
 
 	public PassageiroRequestDto(String bairro, String cidade, String cpf, Date dataNascimento, String email,
 			String nomePassageiro, String rg, String rua, String telefone, String whatsApp, Integer viajemId,
-			String estado, Integer empresaId) {
+			String estado, Integer empresaId,Boolean condicaoEspecial,String condicoesEspeciais,BigDecimal valorViajem) {
 		super();
 		this.bairro = bairro;
 		this.cidade = cidade;
@@ -37,6 +41,33 @@ public class PassageiroRequestDto {
 		this.viajemId = viajemId;
 		this.estado = estado;
 		this.empresaId = empresaId;
+		this.condicaoEspecial = condicaoEspecial;
+		this.condicoesEspeciais = condicoesEspeciais;
+		this.valorViajem = valorViajem;
+	}
+
+	public BigDecimal getValorViajem() {
+		return valorViajem;
+	}
+
+	public void setValorViajem(BigDecimal valorViajem) {
+		this.valorViajem = valorViajem;
+	}
+
+	public Boolean getCondicaoEspecial() {
+		return condicaoEspecial;
+	}
+
+	public void setCondicaoEspecial(Boolean condicaoEspecial) {
+		this.condicaoEspecial = condicaoEspecial;
+	}
+
+	public String getCondicoesEspeciais() {
+		return condicoesEspeciais;
+	}
+
+	public void setCondicoesEspeciais(String condicoesEspeciais) {
+		this.condicoesEspeciais = condicoesEspeciais;
 	}
 
 	public Integer getEmpresaId() {

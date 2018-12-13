@@ -1,6 +1,6 @@
 class Passageiro {
     constructor(nomePassageiro, email, telefone, whatsApp, rua, numeroRua, bairro, cidade, dataNascimento,
-        rg, cpf,viajemId,estado) {
+        rg, cpf,viajemId,estado,condicaoEspecial,condicoesEspeciais,valorViajem) {
         this.nomePassageiro = nomePassageiro;
         this.email = email;
         this.telefone = telefone
@@ -15,6 +15,21 @@ class Passageiro {
         this.viajemId = viajemId;
         this.empresaId = localStorage.getItem('empresaId');
         this.estado = estado;
+        
+        if(!condicaoEspecial){
+            this.condicaoEspecial = false;
+            this.condicoesEspeciais = '';
+            this.valorViajem = 0;
+        }else{
+            this.condicaoEspecial = condicaoEspecial;
+            if(condicoesEspeciais != 'Escolha a Condição Especial'){
+                this.condicoesEspeciais = condicoesEspeciais;
+            }else{
+                this.condicoesEspeciais = 1;
+            }
+            this.valorViajem = valorViajem;        
+        }
+        
         Object.freeze(this);
     }
 

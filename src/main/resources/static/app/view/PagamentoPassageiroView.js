@@ -88,6 +88,7 @@ class PagamentoPassageiroView {
         if (model != null && model.length > 0) {
             
             model.forEach(element => {
+                
                 cardPagamentos += `
                 <tr>
                     <td>${element.parcela}</td>
@@ -97,8 +98,12 @@ class PagamentoPassageiroView {
                     <td>${element.formaPagamento}</td>
                     <td>${element.statusPagamento}</td>
                     <td>
-                        <a href="#" onclick="pagamentoPassageiroController.openDetalhesPagamento(event,${element.pagamentoId})" style="color:black"><i class="material-icons">edit</i></a>
-                        <a href="#" onclick="pagamentoPassageiroController.excluiPagamento(event,${element.pagamentoId})"><i class="material-icons" style="color:black">delete_forever</i></a>
+                        <a href="#" onclick="pagamentoPassageiroController.openEditPagamento(event,${element.pagamentoId})" style="color:black">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="#" onclick="pagamentoPassageiroController.excluiPagamento(event,${element.pagamentoId})">
+                            <i class="material-icons" style="color:black">delete_forever</i>
+                        </a>
                     </td>
                 </tr>
                 `;

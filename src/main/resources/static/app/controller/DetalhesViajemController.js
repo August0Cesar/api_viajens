@@ -20,6 +20,11 @@ class DetalhesViajemController {
         this._inputViajemId = $('#viajemPassageiro');
         this._inputEstado = $('#estadoPassageiro');
 
+        //caso seja condicao especial
+        this._inputValorViajem = $('#valorPassagem');
+        this._inputCheckCondicaoEspecial = $('#checkCondicao');
+        this._inputCondicoesEspeciais = $('#condicoesEspeciais');
+
         //fazendo bind dos inputs do formulario Custo
         this._inputCustoId = $('#idCusto');
         this._inputDescricaoCusto = $('#descricaoCusto');
@@ -81,6 +86,7 @@ class DetalhesViajemController {
         }
         this.limpaFormularioCusto();
     }
+    
     limpaFormularioCusto() {
         this._inputDescricaoCusto.value = '';
         this._inputCustoId.value = '';
@@ -90,10 +96,12 @@ class DetalhesViajemController {
         event.preventDefault();
         let passageiro = new Passageiro(this._inputNomePassageiro.value, this._inputEmail.value, this._inputTelefone.value, this._inputWhatsApp.value,
             this._inputRua.value, this._inputNumeroRua.value, this._inputBairro.value, this._inputCidade.value, this._inputDataNascimento.value,
-            this._inputRg.value, this._inputCpf.value, this._inputViajemId.value, this._inputEstado.value
+            this._inputRg.value, this._inputCpf.value, this._inputViajemId.value, this._inputEstado.value,this._inputCheckCondicaoEspecial.checked,
+            this._inputCondicoesEspeciais.value,this._inputValorViajem.value
         );
         $('#modalPassageiro').modal('hide');
         let dados = JSON.stringify(passageiro);
+        console.log(passageiro);
         this._passageiroService.savePassageiro(dados)
             .then(data => {
                 //this._viajemView.atualizaPassageiros(data);
@@ -150,5 +158,14 @@ class DetalhesViajemController {
         console.log(data);
         localStorage.setItem('passageiroAtivo', data);
         window.location.replace("/historicoPagamentos");
+    }
+    marcaCondicaoEspecial(){
+        let rowCondiocesEspeciais = document.getElementById('linhaCondicaoEspecial');
+
+        if(this._inputCheckCondicaoEspecial.checked){
+            rowCondiocesEspeciais.classList.remove('d-none');
+        }else{
+            rowCondiocesEspeciais.classList.add('d-none');
+        }        
     }
 }
