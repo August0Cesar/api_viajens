@@ -167,6 +167,15 @@ public class PassageiroController {
 		passageiroAtual.setTelefone(passageiro.getTelefone());
 		passageiroAtual.setWhatsapp(passageiro.getWhatsApp());
 		passageiroAtual.setNomePassageiro(passageiro.getNomePassageiro());
+		if(passageiro.getCondicaoEspecial() != null && passageiro.getCondicaoEspecial()){
+			passageiroAtual.setCondicaoEspecial(passageiro.getCondicaoEspecial());
+			passageiroAtual.setCondicoesEspeciais(passageiro.getCondicoesEspeciais());
+			passageiroAtual.setValorViajem(passageiro.getValorViajem());
+		}else{
+			passageiroAtual.setCondicaoEspecial(false);
+			passageiroAtual.setCondicoesEspeciais("");
+			passageiroAtual.setValorViajem(BigDecimal.ZERO);
+		}
 		passageirosRepository.save(passageiroAtual);
 
 		return new PassageiroDto(passageiroAtual);

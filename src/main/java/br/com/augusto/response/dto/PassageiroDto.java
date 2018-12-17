@@ -1,5 +1,6 @@
 package br.com.augusto.response.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import br.com.augusto.models.Enderecos;
@@ -21,6 +22,9 @@ public class PassageiroDto {
 	private String statusPagamento;
 	private Enderecos endereco;
 	private Integer qtdViajens;
+	private Boolean condicaoEspecial;
+	private String condicoesEspeciais;
+	private BigDecimal valorViajem;
 
 	public PassageiroDto() {
 	}
@@ -43,6 +47,39 @@ public class PassageiroDto {
 			this.status = passageiros.getStatus().getDescricao();
 
 		this.endereco = passageiros.getEndereco();
+		if(passageiros.getCondicaoEspecial() != null && passageiros.getCondicaoEspecial()){
+			this.condicaoEspecial = passageiros.getCondicaoEspecial();
+			this.condicoesEspeciais = passageiros.getCondicoesEspeciais();
+			this.valorViajem = passageiros.getValorViajem();
+		}else{ 
+			this.condicaoEspecial = false;
+			this.condicoesEspeciais = "";
+			this.valorViajem = BigDecimal.ZERO;
+		}
+	}
+
+	public Boolean getCondicaoEspecial() {
+		return condicaoEspecial;
+	}
+
+	public void setCondicaoEspecial(Boolean condicaoEspecial) {
+		this.condicaoEspecial = condicaoEspecial;
+	}
+
+	public String getCondicoesEspeciais() {
+		return condicoesEspeciais;
+	}
+
+	public void setCondicoesEspeciais(String condicoesEspeciais) {
+		this.condicoesEspeciais = condicoesEspeciais;
+	}
+
+	public BigDecimal getValorViajem() {
+		return valorViajem;
+	}
+
+	public void setValorViajem(BigDecimal valorViajem) {
+		this.valorViajem = valorViajem;
 	}
 
 	public ViajensDto getViajem() {

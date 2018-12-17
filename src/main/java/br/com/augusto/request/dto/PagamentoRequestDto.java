@@ -12,9 +12,13 @@ public class PagamentoRequestDto {
 	private Integer formaPagamentoId;
 	private Date dataPagamento;
 	private Date dataVencimento;
+	private Boolean condicaoEspecial;
+	private String condicoesEspeciais;
+	private BigDecimal valorViajem;
 
 	public PagamentoRequestDto(Integer parcela, BigDecimal valor, Integer passageiroId, Integer viajemId,
-			Integer formaPagamentoId, Date dataPagamento, Date dataVencimento,Integer pagamentoId) {
+			Integer formaPagamentoId, Date dataPagamento, Date dataVencimento,Integer pagamentoId,BigDecimal valorViajem,String condicoesEspeciais
+			,Boolean condicaoEspecial) {
 		super();
 		this.pagamentoId = pagamentoId;
 		this.parcela = parcela;
@@ -24,10 +28,38 @@ public class PagamentoRequestDto {
 		this.formaPagamentoId = formaPagamentoId;
 		this.dataPagamento = dataPagamento;
 		this.dataVencimento = dataVencimento;
+		this.condicaoEspecial = condicaoEspecial;
+		this.condicoesEspeciais = condicoesEspeciais;
+		this.valorViajem = valorViajem;
+		
 	}
 
 	public PagamentoRequestDto() {
 		super();
+	}
+
+	public Boolean getCondicaoEspecial() {
+		return condicaoEspecial;
+	}
+
+	public void setCondicaoEspecial(Boolean condicaoEspecial) {
+		this.condicaoEspecial = condicaoEspecial;
+	}
+
+	public String getCondicoesEspeciais() {
+		return condicoesEspeciais;
+	}
+
+	public void setCondicoesEspeciais(String condicoesEspeciais) {
+		this.condicoesEspeciais = condicoesEspeciais;
+	}
+
+	public BigDecimal getValorViajem() {
+		return valorViajem;
+	}
+
+	public void setValorViajem(BigDecimal valorViajem) {
+		this.valorViajem = valorViajem;
 	}
 
 	public Integer getPagamentoId() {
