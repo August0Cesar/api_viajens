@@ -2,6 +2,7 @@ package br.com.augusto.response.dto;
 
 import java.math.BigDecimal;
 
+import br.com.augusto.models.FormaPagamento;
 import br.com.augusto.models.PagamentosPassageiros;
 import br.com.augusto.utils.DateUtiuls;
 
@@ -11,11 +12,11 @@ public class PagamentoDto {
 	private BigDecimal valor;
 	private String dataVencimento;
 	private String dataPagamento;
-	private String formaPagamento;
+	private FormaPagamento formaPagamento;
 	private String statusPagamento;
 
 	public PagamentoDto(Integer pagamentoId, Integer parcela, BigDecimal valor, String dataVencimento,
-			String dataPagamento, String formaPagamento, String statusPagamento) {
+			String dataPagamento, FormaPagamento formaPagamento, String statusPagamento) {
 		super();
 		this.pagamentoId = pagamentoId;
 		this.parcela = parcela;
@@ -44,7 +45,7 @@ public class PagamentoDto {
 			this.dataPagamento = "";
 		}
 
-		this.formaPagamento = pagamento.getFormaPagamento().getDescricao();
+		this.formaPagamento = pagamento.getFormaPagamento();
 		this.statusPagamento = pagamento.getStatus().getDescricao();
 	}
 
@@ -88,11 +89,11 @@ public class PagamentoDto {
 		this.dataPagamento = dataPagamento;
 	}
 
-	public String getFormaPagamento() {
+	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
 
-	public void setFormaPagamento(String formaPagamento) {
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
 

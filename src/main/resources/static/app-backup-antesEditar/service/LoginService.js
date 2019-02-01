@@ -2,6 +2,7 @@ class LoginService {
     constructor() {
         this._http = new HttpService();
         this._url = '/login';
+        //this._url = 'http://vps11062.publiccloud.com.br:8080/api-viajens/login';
     }
     fazLogin(jsonUser) {
         return new Promise((resolve, reject) => {

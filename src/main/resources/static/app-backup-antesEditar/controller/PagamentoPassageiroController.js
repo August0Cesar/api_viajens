@@ -43,18 +43,15 @@ class PagamentoPassageiroController {
 
     cadastroEditPagamento(event) {
         event.preventDefault();
-        if(!this.validaFormularioPagamento()){
-            alert('');
-        }else{
-            let pagamentoId = this._inputPagamentoId.value;
+        let pagamentoId = this._inputPagamentoId.value;
         let viajemId = localStorage.getItem('viajemAtiva');
         let passageiroId = localStorage.getItem('passageiroAtivo');
         let pagamentoPassageiro = new PagamentoPassageiro(this._inputNumeroParcela.value, this._inputValorParcela.value, this._inputDataPagamento.value,
              this._inputDataVencimento.value,this._inputFormaPagamento.value, viajemId, passageiroId,this._inputPagamentoId.value);
         $('#modalPagamento').modal('hide');
         /*if (pagamentoId == '') {
-            console.log('cadastrar');*/
-            console.log(JSON.stringify(pagamentoPassageiro));
+            console.log('cadastrar');
+            console.log(JSON.stringify(pagamentoPassageiro));*/
             this._pagamentoPassageiroService.savePagamento(JSON.stringify(pagamentoPassageiro))
                 .then(data => {
                     console.log(data);
@@ -70,16 +67,6 @@ class PagamentoPassageiroController {
             
         }*/
         this.limpaFormularioCusto();
-        }
-        
-    }
-    validaFormularioPagamento(){
-        if(this._inputNumeroParcela.value == '' && this._inputValorParcela.value == '' && this._inputDataVencimento.value == ''
-              && this._inputFormaPagamento.value == ''){
-            return false;
-        }else{
-            return true;
-        }
     }
     limpaFormularioCusto() {
         this._inputPagamentoId.value = '';
@@ -116,7 +103,7 @@ class PagamentoPassageiroController {
                 this._inputValorParcela.value = element.valor;
                 this._inputDataPagamento.value = element.dataPagamento;
                 this._inputDataVencimento.value =  element.dataVencimento;
-                this._inputFormaPagamento.innerHTML = UtilsSelect.populaSelectCondicaoFormaPagamentoEdit(element.formaPagamento);
+                this._inputFormaPagamento.value = element.formaPagamento;
             }
 
         });

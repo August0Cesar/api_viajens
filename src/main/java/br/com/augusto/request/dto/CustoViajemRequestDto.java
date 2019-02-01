@@ -2,9 +2,19 @@ package br.com.augusto.request.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class CustoViajemRequestDto {
+	@NotEmpty(message = "{descricao.not.blank}")
 	private String descricao;
+	
+	//@NotNull(message = "{valor.not.blank}")
+	@NotNull(message = "{valor.not.null}")
 	private BigDecimal valor;
+	
+	//@NotNull(message = "{viajemId.not.blank}")
 	private Integer viajemId;
 
 	public CustoViajemRequestDto(String descricao, BigDecimal valor, Integer viajemId) {

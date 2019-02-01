@@ -9,7 +9,7 @@ class Passageiro {
         this.numeroRua = numeroRua;
         this.bairro = bairro;
         this.cidade = cidade;
-        this.dataNascimento = dataNascimento ? DateHelper.textoParaData(dataNascimento).getTime(): null;
+        this.dataNascimento = DateHelper.textoParaData(dataNascimento).getTime();
         this.cpf = cpf;
         this.rg = rg;
         this.viajemId = viajemId;

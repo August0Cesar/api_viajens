@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -176,19 +180,18 @@ public class ViajemController {
 	}
 
 	@PostMapping("/custoViajem")
-	@ResponseBody
-	public CustosDto buscaDetalhesViajens(@RequestBody CustoViajemRequestDto custoViajem) {
+	public ResponseEntity<CustosDto> buscaDetalhesViajens(@RequestBody @Valid CustoViajemRequestDto custoViajem) {
 		if (custoViajem == null)
 			return null;
 		Viajens viajem = viajemRepository.findViajemById(custoViajem.getViajemId());
-		if (viajem != null) {
+		//if (viajem != null) {
 			Custos custo = new Custos(custoViajem);
 			custo.setViajem(viajem);
 			custosRepository.save(custo);
-			return new CustosDto(custo);
-		} else {
-			return null;
-		}
+			return new ResponseEntity<>(new CustosDto(custo),HttpStatus.CREATED);
+		//} else {
+			//return null;
+		//}
 	}
 
 	@PostMapping("/editCustoViajem")

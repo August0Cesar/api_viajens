@@ -16,7 +16,7 @@ class ViajemService {
     }
     saveViajens(data) {
         let url = '/viajens';
-        
+
         return new Promise((resolve, reject) => {
             this.http.post(url,data).then(data => {
                 data.json().then(function (data) {

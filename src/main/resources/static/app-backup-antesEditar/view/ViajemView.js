@@ -23,7 +23,7 @@ class ViajemView {
                         <h4 class="card-title"><a href="detalhesViajem.html" onclick="viajemController.detalheViajens(event,${element.viajemId})"> ${element.nomeViajem} </a></h4>
                         <h5 class="card-text"><b>Custos </b> R$ ${element.totalCusto} </h5>
                         <p class="card-text"><b>Saída </b>${element.dataInicio}</p>
-                        <p class="card-text"><b>Pago até o momento ${Utils.decimalToFormatMoney(element.valorPago)} </b></p>
+                        <p class="card-text"><b>Pago até o momento R$ ${element.valorPago}</b></p>
                         <div class="align-self-center">
                         <div class="circle-card">${element.totalPassageiro} | ${element.qtdPassageiros}</div>
                     </div>

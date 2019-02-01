@@ -65,13 +65,9 @@ class DetalhesViajemController {
             this._detalhesViajemService.saveCusto(JSON.stringify(custo))
                 .then(data => {
                     console.log(data);
-                    if(data.code != 'undefined' && data.code == 400){
-                        alert(data.errors[0].message);
-                    }
                     this.buscaDetalhesViajem();
                 })
                 .catch(error => {
-                    alert(error.errors[0].message);
                     console.log(error);
                     alert('Erro ao tentar cadastrar novo custo.');
                 });
@@ -84,7 +80,6 @@ class DetalhesViajemController {
                     this.buscaDetalhesViajem();
                 })
                 .catch(error => {
-                    alert(error.errors[0].message);
                     console.log(error);
                     alert('Erro ao tentar cadastrar novo custo.');
                 });

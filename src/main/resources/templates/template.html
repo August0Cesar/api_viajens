@@ -2,168 +2,161 @@
 <html lang="pt-br">
 
 <head>
-  <title>Principal</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="referrer" content="no-referrer" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- Material Kit CSS -->
-  <link href="assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
-  <link href="assets/css/app.css" rel="stylesheet" />
+	<title>Principal</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	<!-- Material Kit CSS -->
+	<link href="assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
+	<link href="assets/css/app.css" rel="stylesheet" />
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse navbar-expand-lg bg-danger" role="navigation-demo">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-translate" id="nomeEmpresa">
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="dropdown nav-item">
-            <a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
-              <div class="profile-photo-small">
-                <img src="./assets/img/faces/default.png" alt="Circle Image" class="rounded-circle img-fluid">
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item">Sair</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-->
-  </nav>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-nav-tabs card-plain">
-          <div class="card-header card-header-danger">
-            <div class="nav-tabs-navigation">
-              <div class="nav-tabs-wrapper">
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                  <li class="nav-item" onclick="viajemController.buscaViajens('onibus')">
-                    <a class="nav-link active" href="#viajens" data-toggle="tab">
-                      <i class="material-icons">directions_bus</i>Viajem Onibus
-                    </a>
-                  </li>
-                  <li class="nav-item" onclick="viajemController.buscaViajens('tren')">
-                    <a class="nav-link" href="#viajens" data-toggle="tab">
-                      <i class="material-icons">train</i>Viajem Tren</a>
-                  </li>
-                  <li class="nav-item" onclick="viajemController.buscaViajens('aviao')">
-                    <a class="nav-link" href="#viajens" data-toggle="tab">
-                      <i class="material-icons">flight</i>Viajem Avião</a>
-                  </li>
-                  <li class="nav-item" onclick="viajemController.buscaPassageiros()">
-                    <a class="nav-link" href="#passageiros" data-toggle="tab">
-                      <i class="material-icons">people</i>Passageiros</a>
-                  </li>
-                  <li class="nav-item text-rigth">
-                    <a class="nav-link" href="#financeiro" data-toggle="tab">
-                      <i class="material-icons">assessment</i>Financeiro</a>
-                  </li>
-                  <li class="nav-item">
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalViajem">Nova Viajem</button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="card-body ">
-            <div class="tab-content text-center">
-              <div class="tab-pane active" id="viajens">
-                <div class="row" id="container-viajens">
-                </div>
-              </div>
-              <div class="tab-pane" id="passageiros">
-                <div class="container-fluid">
-                  <div class="form-row">
-                    <div class="col-md-8">
-                      <form onsubmit="viajemController.filtraPassageiros(event)">
-                        <div class="form-row">
-                          <!-- <div class="form-group col-md-3 has-danger">
+	<nav class="navbar navbar-inverse navbar-expand-lg bg-danger" role="navigation-demo">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-translate" id="nomeEmpresa"></div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="dropdown nav-item"><a href="#" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+							<div class="profile-photo-small">
+								<img src="./assets/img/faces/default.png" alt="Circle Image" class="rounded-circle img-fluid">
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a href="#" class="dropdown-item" onclick="viajemController.logout()">Sair</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-->
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card card-nav-tabs card-plain">
+					<div class="card-header card-header-danger">
+						<div class="nav-tabs-navigation">
+							<div class="nav-tabs-wrapper">
+								<ul class="nav nav-tabs" data-tabs="tabs">
+									<li class="nav-item" onclick="viajemController.buscaViajens('onibus')"><a class="nav-link active" href="#viajens"
+										 data-toggle="tab">
+											<i class="material-icons">directions_bus</i>Viagem Onibus
+										</a></li>
+									<li class="nav-item" onclick="viajemController.buscaViajens('tren')"><a class="nav-link" href="#viajens"
+										 data-toggle="tab"> <i class="material-icons">train</i>Viagem Tren
+										</a></li>
+									<li class="nav-item" onclick="viajemController.buscaViajens('aviao')"><a class="nav-link" href="#viajens"
+										 data-toggle="tab"> <i class="material-icons">flight</i>Viagem Avião
+										</a></li>
+									<li class="nav-item" onclick="viajemController.buscaPassageiros()"><a class="nav-link" href="#passageiros"
+										 data-toggle="tab"> <i class="material-icons">people</i>Passageiros
+										</a></li>
+									<li class="nav-item text-rigth"><a class="nav-link" href="#financeiro" data-toggle="tab"> <i class="material-icons">assessment</i>Financeiro
+										</a></li>
+									<li class="nav-item">
+										<button class="btn btn-danger" data-toggle="modal" data-target="#modalViajem">Nova Viajem</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="card-body ">
+						<div class="tab-content text-center">
+							<div class="tab-pane active" id="viajens">
+								<div class="row" id="container-viajens"></div>
+							</div>
+							<div class="tab-pane" id="passageiros">
+								<div class="container-fluid">
+									<div class="form-row">
+										<div class="col-md-8">
+											<form onsubmit="viajemController.filtraPassageiros(event)">
+												<div class="form-row">
+													<!-- <div class="form-group col-md-3 has-danger">
                             <label for="inputCity" class="bmd-label-floating">Passageiro</label>
                             <input type="text" id="nomePassageiroFiltro" class="form-control" id="inputCity">
                           </div> -->
-                          <div class="form-group col-md-2  has-danger">
-                            <label for="filtroStatusPassageiro" class="bmd-label-floating">Status</label>
-                            <select id="filtroStatusPassageiro" class="form-control">
-                            </select>
-                          </div>
-                          <div class="form-group col-md-2  has-danger">
-                            <label for="filtroViajens" class="bmd-label-floating">Viajem</label>
-                            <select id="filtroViajens" class="form-control">
-                            </select>
-                          </div>
-                          <div>
-                            <button class="btn btn-round" type="submit" style="margin-top:3em"><i class="material-icons">search</i></button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-md-2">
-                      <button class="btn btn-round btn-danger" style="margin-top:3em" data-toggle="modal" data-target="#modalPassageiro">
-                        <i class="material-icons">add</i> Novo Passageiro
-                      </button>
-                    </div>
-                  </div>
-                  <div class="row" id="conatiner-painel-passageiros">
-                    <div class="col-md-8">
-                      <div class="row" id="painel-passageiros">
-                      </div>
-                    </div>
-                    <div class="col-md-4" id="painel-perfil">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="financeiro">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-2  has-danger">
-                            <label for="statusPassageiro" class="bmd-label-floating">Mês</label>
-                            <select id="statusPassageiro" class="form-control">
-                              <option selected>Escolha Mês</option>
-                              <option>Outubro</option>
-                              <option>Novembro</option>
-                              <option>Dezembro</option>
-                            </select>
-                          </div>
-                          <div>
-                            <button class="btn btn-round" type="submit" style="margin-top:3em"><i class="material-icons">search</i></button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <!-- Tabela Financeiro-->
-                  <div class="card">
-                    <div class="card-header card-header-danger" style="margin-top:1em">
-                      <h4 class="card-title">Resultados Financeiros</h4>
-                    </div>
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table">
-                          <thead>
-                            <th>Mês</th>
-                            <th>Nome da Viajem</th>
-                            <th>Total de Custos</th>
-                            <th>Total de Receita Recebida</th>
-                            <th>Total</th>
-                          </thead>
-                          <tbody>
-                            <!-- <tr>
+													<div class="form-group col-md-2  has-danger">
+														<label for="filtroStatusPassageiro" class="bmd-label-floating">Status</label> <select id="filtroStatusPassageiro"
+														 class="form-control">
+														</select>
+													</div>
+													<div class="form-group col-md-2  has-danger">
+														<label for="filtroViajens" class="bmd-label-floating">Viajem</label>
+														<select id="filtroViajens" class="form-control">
+														</select>
+													</div>
+													<div>
+														<button class="btn btn-round" type="submit" style="margin-top: 3em">
+															<i class="material-icons">search</i>
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="col-md-2">
+											<button class="btn btn-round btn-danger" style="margin-top: 3em" data-toggle="modal" data-target="#modalPassageiro">
+												<i class="material-icons">add</i> Novo Passageiro
+											</button>
+										</div>
+									</div>
+									<div class="row" id="conatiner-painel-passageiros">
+										<div class="col-md-8">
+											<div class="row" id="painel-passageiros"></div>
+										</div>
+										<div class="col-md-4" id="painel-perfil"></div>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="financeiro">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-md-12">
+											<form>
+												<div class="form-row">
+													<div class="form-group col-md-2  has-danger">
+														<label for="statusPassageiro" class="bmd-label-floating">Mês</label>
+														<select id="statusPassageiro" class="form-control">
+															<option selected>Escolha Mês</option>
+															<option>Outubro</option>
+															<option>Novembro</option>
+															<option>Dezembro</option>
+														</select>
+													</div>
+													<div>
+														<button class="btn btn-round" type="submit" style="margin-top: 3em">
+															<i class="material-icons">search</i>
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<!-- Tabela Financeiro-->
+									<div class="card">
+										<div class="card-header card-header-danger" style="margin-top: 1em">
+											<h4 class="card-title">Resultados Financeiros</h4>
+										</div>
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<th>Mês</th>
+														<th>Nome da Viajem</th>
+														<th>Total de Custos</th>
+														<th>Total de Receita Recebida</th>
+														<th>Total</th>
+													</thead>
+													<tbody>
+														<!-- <tr>
                               <td>Setembro</td>
                               <td>Excursão para Salvador</td>
                               <td>R$ 1.200</td>
@@ -184,295 +177,365 @@
                               <td>R$ 4.000,00</td>
                               <td class="text-warning">R$ -200,00</td>
                             </tr> -->
-                          </tbody>
-                        </table>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#modalPassageiro">
-                          <i class="material-icons">cloud_download</i> Exportar Excell
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Tela Principal -->
+													</tbody>
+												</table>
+												<button class="btn btn-danger" data-toggle="modal" data-target="#modalPassageiro">
+													<i class="material-icons">cloud_download</i> Exportar
+													Excell
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Tela Principal -->
 
-  <!--Modal Cadastro de Viajem-->
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modalViajem" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <form class="container" onsubmit="viajemController.cadastraViajem(event)">
-          <div class="modal-header">
-            <h5 class="modal-title">Cadastro de Viajem</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="form-group has-danger">
-            <label for="nomeViajem" class="bmd-label-floating">Nome da Viajem</label>
-            <input type="text" class="form-control" id="nomeViajem" aria-describedby="emailHelp">
-          </div>
-          <div class="row">
-            <div class="col-lg3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="tipoViajem" class="bmd-label-floating">Tipo Viajem</label>
-                <select id="tipoViajem" class="form-control">
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="valorPassagem" class="bmd-label-floating">Valor da Passajem</label>
-                <input type="text" class="form-control" id="valorPassagem">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="qtdPassageiros" class="bmd-label-floating">Quantidade Passageiros</label>
-                <input type="number" class="form-control" id="qtdPassageiros">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label class="label-control">Data Saída</label>
-                <input type="text" class="form-control datetimepicker" data-format="dd/MM/yyyy" id="dataInicio" />
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label class="label-control">Data Chegada</label>
-                <input type="text" class="form-control datetimepicker" id="dataFinal">
-              </div>
-            </div>
-          </div>
-          <div class="form-group has-danger">
-            <label for="descricaoViajem">Descricao da Viajem</label>
-            <textarea class="form-control" id="descricaoViajem" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn btn-danger">Salvar Viajem</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!--Modal Cadastro de Viajem-->
-  <!--Modal Cadastro de Passageiro -->
-  <div class="modal fade bd-example-modal-lg" id="modalPassageiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <form class="container" onsubmit="viajemController.cadastroPassageiro(event)" name="formPassageiro">
-          <div class="modal-header">
-            <h5 class="modal-title">Cadastro de Passageiro</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="row">
-            <input type="hidden" id="idPassageiro">
-            <div class="col-lg-4 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="viajemPassageiro" class="bmd-label-floating">Viajem</label>
-                <select id="viajemPassageiro" class="form-control">
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="nomePassageiro" class="bmd-label-floating">Nome do Passageiro</label>
-                <input type="text" class="form-control" id="nomePassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="emailPassageiro" class="bmd-label-floating">Email</label>
-                <input type="text" class="form-control" id="emailPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="telefonePassageiro" class="bmd-label-floating">Telefone</label>
-                <input type="text" name="tel" onblur="viajemController.validateTelefone(formPassageiro.tel)" onkeypress="viajemController.MascaraTelefone(event)"
-                  class="form-control" id="telefonePassageiro">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="whatsappPassageiro" class="bmd-label-floating">WhatsApp</label>
-                <input type="text" class="form-control" id="whatsappPassageiro">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label class="label-control">Data Nascimento</label>
-                <input type="text" class="form-control datetimepicker" id="dataNascimentoPassageiro" />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="ruaPassageiro" class="bmd-label-floating">Endereço</label>
-                <input type="text" class="form-control" id="ruaPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-2 col-sm-2">
-              <div class="form-group has-danger">
-                <label for="numeroRuaPassageiro" class="bmd-label-floating">Nº</label>
-                <input type="number" class="form-control" id="numeroRuaPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="cidadePassageiro" class="bmd-label-floating">Cidade</label>
-                <input type="text" class="form-control" id="cidadePassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="bairroPassageiro" class="bmd-label-floating">Bairro</label>
-                <input type="text" class="form-control" id="bairroPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-sm-4">
-              <div class="form-group has-danger">
-                <label for="estadoPassageiro" class="bmd-label-floating">Estado</label>
-                <input type="text" class="form-control" id="estadoPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-3 col- sm-4">
-              <div class="form-group has-danger">
-                <label for="cpfPassageiro">Cpf</label>
-                <input type="text" class="form-control" id="cpfPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-            <div class="col-lg-3 col- sm-4">
-              <div class="form-group has-danger">
-                <label for="rgPassageiro">RG</label>
-                <input type="text" class="form-control" id="rgPassageiro" aria-describedby="emailHelp">
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-danger">Salvar Passageiro</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!--Modal Cadastro de Passageiro-->
+	<!--Modal Cadastro de Viajem-->
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modalViajem" aria-labelledby="myLargeModalLabel"
+	 aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="container" onsubmit="viajemController.cadastraViajem(event)">
+					<div class="modal-header">
+						<h5 class="modal-title">Cadastro de Viajem</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="form-group has-danger">
+						<label for="nomeViajem" class="bmd-label-floating">Nome da
+							Viajem</label> <input type="text" class="form-control" id="nomeViajem" aria-describedby="emailHelp">
+					</div>
+					<div class="row">
+						<div class="col-lg3 col-sm-4">
+							<div class="form-group has-danger">
+								<label for="tipoViajem" class="bmd-label-floating">Tipo
+									Viajem</label> <select id="tipoViajem" class="form-control">
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-4">
+							<div class="form-group has-danger">
+								<label for="valorPassagem" class="bmd-label-floating">Valor
+									da Passajem</label> <input type="text" class="form-control" id="valorPassagem" onkeydown="viajemController.mascaraDinheiro(event,'valorPassagem')">
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-4">
+							<div class="form-group has-danger">
+								<label for="qtdPassageiros" class="bmd-label-floating">Quantidade
+									Passageiros</label> <input type="number" class="form-control" id="qtdPassageiros">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3 col-sm-4">
+							<div class="form-group has-danger">
+								<label class="label-control">Data Saída</label> <input type="text" class="form-control datetimepicker"
+								 data-format="dd/MM/yyyy" id="dataInicio" />
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-4">
+							<div class="form-group has-danger">
+								<label class="label-control">Data Chegada</label> <input type="text" class="form-control datetimepicker" id="dataFinal">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="rgPassageiro">Diarias</label> <input type="number" class="form-control" id="dias" aria-describedby="emailHelp">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="cafeManha">Café da Manhã</label> <input type="number" class="form-control" id="cafeManha"
+								 aria-describedby="emailHelp">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="jantar">Jantar</label> <input type="number" class="form-control" id="jantar" aria-describedby="emailHelp">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="almoco">Almoço</label> <input type="number" class="form-control" id="almoco" aria-describedby="emailHelp">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="hospedagem">Hospedagem</label> <input type="text" class="form-control" id="hospedagem"
+								 aria-describedby="emailHelp">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-2">
+							<div class="form-group has-danger">
+								<label for="urlHospedagem">Link Hospedagem</label> <input type="text" class="form-control" id="urlHospedagem"
+								 aria-describedby="emailHelp">
+							</div>
+						</div>
+					</div>
+					<div class="form-group has-danger">
+						<label for="descricaoViajem">Descricao da Viajem</label>
+						<textarea class="form-control" id="descricaoViajem" rows="3"></textarea>
+					</div>
+					<button type="submit" class="btn btn-danger">Salvar Viajem</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--Modal Cadastro de Viajem-->
+	<!--Modal Cadastro de Passageiro -->
+	<div class="modal fade bd-example-modal-lg" id="modalPassageiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	 aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="container" onsubmit="viajemController.cadastroPassageiro(event)" name="formPassageiro">
+					<div class="modal-header">
+						<h5 class="modal-title">Cadastro de Passageiro</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
-  <!--   Core JS Files   -->
-  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="./assets/js/plugins/moment.min.js"></script>
-  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-  <script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--	Plugin for Sharrre btn -->
-  <script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
-  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
+					<div class="modal-body">
+						<div class="row">
+							<input type="hidden" id="idPassageiro">
+							<div class="col-lg-4 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="viajemPassageiro" class="bmd-label-floating">Viajem</label>
+									<select id="viajemPassageiro" class="form-control">
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-4 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="nomePassageiro" class="bmd-label-floating">Nome
+										do Passageiro</label> <input type="text" class="form-control" id="nomePassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-4 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="emailPassageiro" class="bmd-label-floating">Email</label>
+									<input type="text" class="form-control" id="emailPassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="telefonePassageiro" class="bmd-label-floating">Telefone</label>
+									<input type="text" name="tel" onblur="viajemController.validateTelefone(formPassageiro.tel)" onkeypress="viajemController.MascaraTelefone(event)"
+									 class="form-control" id="telefonePassageiro">
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="whatsappPassageiro" class="bmd-label-floating">WhatsApp</label>
+									<input type="text" class="form-control" id="whatsappPassageiro">
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label class="label-control">Data Nascimento</label> <input type="text" class="form-control datetimepicker" id="dataNascimentoPassageiro" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="ruaPassageiro" class="bmd-label-floating">Endereço</label>
+									<input type="text" class="form-control" id="ruaPassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-2 col-sm-2">
+								<div class="form-group has-danger">
+									<label for="numeroRuaPassageiro" class="bmd-label-floating">Nº</label>
+									<input type="number" class="form-control" id="numeroRuaPassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="cidadePassageiro" class="bmd-label-floating">Cidade</label>
+									<input type="text" class="form-control" id="cidadePassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="bairroPassageiro" class="bmd-label-floating">Bairro</label>
+									<input type="text" class="form-control" id="bairroPassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="estadoPassageiro" class="bmd-label-floating">Estado</label>
+									<input type="text" class="form-control" id="estadoPassageiro" aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-3 col- sm-4">
+								<div class="form-group has-danger">
+									<label for="cpfPassageiro">Cpf</label> <input type="text" class="form-control" id="cpfPassageiro"
+									 aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="col-lg-3 col- sm-4">
+								<div class="form-group has-danger">
+									<label for="rgPassageiro">RG</label> <input type="text" class="form-control" id="rgPassageiro"
+									 aria-describedby="emailHelp">
+								</div>
+							</div>
+							<div class="form-group has-danger">
+								<div class="togglebutton">
+									<label> Condição especial <input type="checkbox" id="checkCondicao" onclick="viajemController.marcaCondicaoEspecial(event)">
+										<span class="toggle"></span>
 
-  <!--   Codigo da Aplicacao   -->
-  <script src="./app/model/Viajem.js" type="text/javascript"></script>
-  <script src="./app/model/Passageiro.js" type="text/javascript"></script>
-  <script src="./app/controller/ViajemController.js" type="text/javascript"></script>
-  <script src="./app/service/ViajemService.js" type="text/javascript"></script>
-  <script src="./app/service/PassageiroService.js" type="text/javascript"></script>
-  <script src="./app/service/HttpService.js" type="text/javascript"></script>
-  <script src="./app/view/ViajemView.js" type="text/javascript"></script>
-  <script src="./app/view/EmpresaView.js" type="text/javascript"></script>
-  <script src="./app/model/ListaViajem.js" type="text/javascript"></script>
-  <script src="./app/utils/DateHelper.js" type="text/javascript"></script>
-  <script src="./app/utils/MascUtils.js" type="text/javascript"></script>
-  <script>
-    let viajemController = new ViajemController();
-  </script>
-  <script>
-    $(document).ready(function () {
-      //init DateTimePickers
-      materialKit.initFormExtendedDatetimepickers();
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row d-none" id="linhaCondicaoEspecial">
+							<div class="col-lg-4 col-sm-4">
+								<div class="form-group has-danger">
+									<label for="valorPassagem" class="bmd-label-floating">Valor
+										da Passajem</label> <input type="text" class="form-control" id="valorPassagemPassageiro" onkeydown="viajemController.mascaraDinheiro(event,'valorPassagemPassageiro')">
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6">
+								<div class="form-group has-danger">
+									<label for="condicoesEspeciais" class="bmd-label-floating">Mês</label>
+									<select id="condicoesEspeciais" class="form-control">
+										<option selected>Escolha a Condição Especial</option>
+										<option value="1">Adulto</option>
+										<option value="2">Crianças</option>
+										<option value="3">Combo</option>
+										<option value="4">Outros</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger">Salvar
+							Passageiro</button>
+					</div>
 
-      // Sliders Init
-      materialKit.initSliders();
-    });
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--Modal Cadastro de Passageiro-->
 
+	<!--   Core JS Files   -->
+	<script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="./assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+	<script src="./assets/js/plugins/moment.min.js"></script>
+	<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+	<script src="./assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+	<!--	Plugin for Sharrre btn -->
+	<script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
+	<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+	<script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
 
-    function scrollToDownload() {
-      if ($('.section-download').length != 0) {
-        $("html, body").animate({
-          scrollTop: $('.section-download').offset().top
-        }, 1000);
-      }
-    }
+	<!--   Codigo da Aplicacao   -->
+	<script src="./app/model/Viajem.js" type="text/javascript"></script>
+	<script src="./app/model/Passageiro.js" type="text/javascript"></script>
+	<script src="./app/controller/ViajemController.js" type="text/javascript"></script>
+	<script src="./app/service/ViajemService.js" type="text/javascript"></script>
+	<script src="./app/service/PassageiroService.js" type="text/javascript"></script>
+	<script src="./app/service/HttpService.js" type="text/javascript"></script>
+	<script src="./app/view/ViajemView.js" type="text/javascript"></script>
+	<script src="./app/view/EmpresaView.js" type="text/javascript"></script>
+	<script src="./app/model/ListaViajem.js" type="text/javascript"></script>
+	<script src="./app/utils/DateHelper.js" type="text/javascript"></script>
+	<script src="./app/utils/UtilsSelect.js" type="text/javascript"></script>
+	<script src="./app/utils/Utils.js" type="text/javascript"></script>
+	<script src="./app/utils/MascUtils.js" type="text/javascript"></script>
 
+	<script>
+		let viajemController = new ViajemController();
+	</script>
+	<script>
+		$(document).ready(function () {
+			//init DateTimePickers
+			materialKit.initFormExtendedDatetimepickers();
 
-    $(document).ready(function () {
+			// Sliders Init
+			materialKit.initSliders();
+		});
 
-      $('#facebook').sharrre({
-        share: {
-          facebook: true
-        },
-        enableHover: false,
-        enableTracking: false,
-        enableCounter: false,
-        click: function (api, options) {
-          api.simulateClick();
-          api.openPopup('facebook');
-        },
-        template: '<i class="fab fa-facebook-f"></i> Facebook',
-        url: 'https://demos.creative-tim.com/material-kit/index.html'
-      });
+		function scrollToDownload() {
+			if ($('.section-download').length != 0) {
+				$("html, body").animate({
+					scrollTop: $('.section-download').offset().top
+				}, 1000);
+			}
+		}
 
-      $('#googlePlus').sharrre({
-        share: {
-          googlePlus: true
-        },
-        enableCounter: false,
-        enableHover: false,
-        enableTracking: true,
-        click: function (api, options) {
-          api.simulateClick();
-          api.openPopup('googlePlus');
-        },
-        template: '<i class="fab fa-google-plus"></i> Google',
-        url: 'https://demos.creative-tim.com/material-kit/index.html'
-      });
+		$(document).ready(function () {
 
-      $('#twitter').sharrre({
-        share: {
-          twitter: true
-        },
-        enableHover: false,
-        enableTracking: false,
-        enableCounter: false,
-        buttons: {
-          twitter: {
-            via: 'CreativeTim'
-          }
-        },
-        click: function (api, options) {
-          api.simulateClick();
-          api.openPopup('twitter');
-        },
-        template: '<i class="fab fa-twitter"></i> Twitter',
-        url: 'https://demos.creative-tim.com/material-kit/index.html'
-      });
+			$('#facebook').sharrre({
+				share: {
+					facebook: true
+				},
+				enableHover: false,
+				enableTracking: false,
+				enableCounter: false,
+				click: function (api, options) {
+					api.simulateClick();
+					api.openPopup('facebook');
+				},
+				template: '<i class="fab fa-facebook-f"></i> Facebook',
+				url: 'https://demos.creative-tim.com/material-kit/index.html'
+			});
 
-    });
-  </script>
+			$('#googlePlus').sharrre({
+				share: {
+					googlePlus: true
+				},
+				enableCounter: false,
+				enableHover: false,
+				enableTracking: true,
+				click: function (api, options) {
+					api.simulateClick();
+					api.openPopup('googlePlus');
+				},
+				template: '<i class="fab fa-google-plus"></i> Google',
+				url: 'https://demos.creative-tim.com/material-kit/index.html'
+			});
+
+			$('#twitter').sharrre({
+				share: {
+					twitter: true
+				},
+				enableHover: false,
+				enableTracking: false,
+				enableCounter: false,
+				buttons: {
+					twitter: {
+						via: 'CreativeTim'
+					}
+				},
+				click: function (api, options) {
+					api.simulateClick();
+					api.openPopup('twitter');
+				},
+				template: '<i class="fab fa-twitter"></i> Twitter',
+				url: 'https://demos.creative-tim.com/material-kit/index.html'
+			});
+
+		});
+	</script>
 </body>
 
 </html>

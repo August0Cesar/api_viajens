@@ -1,6 +1,5 @@
 class Viajem {
-    constructor(nomeViajem, valorViajem, dataInicio, dataFinal, descricao, qtdPassageiros, tipoViajem, empresaId,dias,jantar,
-        almoco,cafeManha,hospedagem,urlHospedagem) {
+    constructor(nomeViajem, valorViajem, dataInicio, dataFinal, descricao, qtdPassageiros, tipoViajem, empresaId) {
         this.nomeViajem = nomeViajem;
         this.valorViajem = valorViajem;
         this.custo = [];
@@ -10,12 +9,6 @@ class Viajem {
         this.qtdPassageiros = qtdPassageiros;
         this.tipoViajem = tipoViajem;
         this.empresaId = empresaId;
-        this.dias = dias;
-        this.jantar = jantar;
-        this.almoco = almoco;
-        this.cafeManha = cafeManha;
-        this.local_hospedagem = hospedagem;
-        this.urlHospedagem = urlHospedagem;
         Object.freeze(this);
     }
 

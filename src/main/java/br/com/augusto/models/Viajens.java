@@ -67,6 +67,14 @@ public class Viajens {
 			@JoinColumn(name = "passageiro_id") })
 	private List<Passageiros> passageiros;
 
+	private Integer cafeManha;
+	private Integer almoco;
+	private Integer jantar;
+	private Integer dias;
+	private Boolean hospedagem;
+	private String localHospedagem;
+	private String urlHospedagem;
+
 	public Viajens(ViajemRequestDto viajemRequestDto) {
 		this.nomeViajem = viajemRequestDto.getNomeViajem();
 		this.descricao = viajemRequestDto.getDescricao();
@@ -75,9 +83,72 @@ public class Viajens {
 		this.dataCadastro = new Date();
 		this.dataFinal = viajemRequestDto.getDataFinal();
 		this.valorViajem = viajemRequestDto.getValorViajem();
+		this.cafeManha = viajemRequestDto.getAlmoco();
+		this.almoco = viajemRequestDto.getAlmoco();
+		this.jantar = viajemRequestDto.getJantar();
+		this.dias = viajemRequestDto.getDias();
+		this.hospedagem = viajemRequestDto.getHospedagem();
+		this.localHospedagem = viajemRequestDto.getLocalHospedagem();
+		this.urlHospedagem = viajemRequestDto.getUrlHospedagem();
 	}
 
 	public Viajens() {
+	}
+
+	public Integer getCafeManha() {
+		return cafeManha;
+	}
+
+	public void setCafeManha(Integer cafeManha) {
+		this.cafeManha = cafeManha;
+	}
+
+	public Integer getAlmoco() {
+		return almoco;
+	}
+
+	public void setAlmoco(Integer almoco) {
+		this.almoco = almoco;
+	}
+
+	public Integer getJantar() {
+		return jantar;
+	}
+
+	public void setJantar(Integer jantar) {
+		this.jantar = jantar;
+	}
+
+	public Integer getDias() {
+		return dias;
+	}
+
+	public void setDias(Integer dias) {
+		this.dias = dias;
+	}
+
+	public Boolean getHospedagem() {
+		return hospedagem;
+	}
+
+	public void setHospedagem(Boolean hospedagem) {
+		this.hospedagem = hospedagem;
+	}
+
+	public String getLocalHospedagem() {
+		return localHospedagem;
+	}
+
+	public void setLocalHospedagem(String localHospedagem) {
+		this.localHospedagem = localHospedagem;
+	}
+
+	public String getUrlHospedagem() {
+		return urlHospedagem;
+	}
+
+	public void setUrlHospedagem(String urlHospedagem) {
+		this.urlHospedagem = urlHospedagem;
 	}
 
 	public Integer getId() {

@@ -95,7 +95,7 @@ class PagamentoPassageiroView {
                     <td>R$ ${element.valor}</td>
                     <td>${element.dataVencimento}</td>
                     <td>${element.dataPagamento}</td>
-                    <td>${element.formaPagamento.descricao}</td>
+                    <td>${element.formaPagamento}</td>
                     <td>${element.statusPagamento}</td>
                     <td>
                         <a href="#" onclick="pagamentoPassageiroController.openEditPagamento(event,${element.pagamentoId})" style="color:black">

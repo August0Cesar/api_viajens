@@ -12,12 +12,20 @@ public class ViajemRequestDto {
 	private Integer qtdPassageiros;
 	private Integer tipoViajem;
 	private BigDecimal valorViajem;
+	private Integer cafeManha;
+	private Integer almoco;
+	private Integer jantar;
+	private Integer dias;
+	private Boolean hospedagem;
+	private String localHospedagem;
+	private String urlHospedagem;
 
 	public ViajemRequestDto() {
 	}
 
 	public ViajemRequestDto(Date dataFinal, Date dataInicio, String descricao, Integer empresaId, String nomeViajem,
-			Integer qtdPassageiros, Integer tipoViajem, BigDecimal valorViajem) {
+			Integer qtdPassageiros, Integer tipoViajem, BigDecimal valorViajem,Integer cafeManha,Integer almoco,
+			Integer jantar,Integer dias,Boolean hospedagem,String localHospedagem,String urlHospedagem) {
 		super();
 		this.dataFinal = dataFinal;
 		this.dataInicio = dataInicio;
@@ -27,6 +35,69 @@ public class ViajemRequestDto {
 		this.qtdPassageiros = qtdPassageiros;
 		this.tipoViajem = tipoViajem;
 		this.valorViajem = valorViajem;
+		this.cafeManha = cafeManha;
+		this.almoco = almoco;
+		this.jantar = jantar;
+		this.dias = dias;
+		this.hospedagem = hospedagem;
+		this.localHospedagem = localHospedagem;
+		this.urlHospedagem = urlHospedagem;
+	}
+
+	public Integer getCafeManha() {
+		return cafeManha;
+	}
+
+	public void setCafeManha(Integer cafeManha) {
+		this.cafeManha = cafeManha;
+	}
+
+	public Integer getAlmoco() {
+		return almoco;
+	}
+
+	public void setAlmoco(Integer almoco) {
+		this.almoco = almoco;
+	}
+
+	public Integer getJantar() {
+		return jantar;
+	}
+
+	public void setJantar(Integer jantar) {
+		this.jantar = jantar;
+	}
+
+	public Integer getDias() {
+		return dias;
+	}
+
+	public void setDias(Integer dias) {
+		this.dias = dias;
+	}
+
+	public Boolean getHospedagem() {
+		return hospedagem;
+	}
+
+	public void setHospedagem(Boolean hospedagem) {
+		this.hospedagem = hospedagem;
+	}
+
+	public String getLocalHospedagem() {
+		return localHospedagem;
+	}
+
+	public void setLocalHospedagem(String localHospedagem) {
+		this.localHospedagem = localHospedagem;
+	}
+
+	public String getUrlHospedagem() {
+		return urlHospedagem;
+	}
+
+	public void setUrlHospedagem(String urlHospedagem) {
+		this.urlHospedagem = urlHospedagem;
 	}
 
 	public BigDecimal getValorViajem() {

@@ -7,7 +7,6 @@ class HttpService {
                     // 'Accept': 'application/json',
                     // 'Content-Type': 'application/json',
                     // 'Access-Control-Allow-Origin': 'http://Vps11062.publiccloud.com.br',
-                    'Access-Control-Allow-Origin': '*',
                     // 'Access-Control-Allow-Credentials': 'true',
                     'Authorization': localStorage.getItem('token')
                 },
@@ -31,8 +30,7 @@ class HttpService {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    // 'Access-Control-Allow-Origin': 'http://vps11062.publiccloud.com.br',
+                    'Access-Control-Allow-Origin': 'http://vps11062.publiccloud.com.br',
                     'Access-Control-Allow-Credentials': 'true',
                     'Authorization': localStorage.getItem('token')
                 },
@@ -55,7 +53,6 @@ class HttpService {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
                     //'Access-Control-Allow-Origin': 'http://vps11062.publiccloud.com.br'
                 },
                 body: data
